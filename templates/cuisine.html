@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>{{ category.name }} - Cuisines</title>
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-container container">
+            <h1 class="logo">Foodies' Paradise</h1>
+        </div>
+    </nav>
+    <section id="cuisines">
+        <h2>{{ category.name }} - Cuisines</h2>
+        <div class="cuisine-container container">
+            {% for cuisine in cuisines %}
+            <div class="cuisine-type">
+                <a href="{{url_for('cuisine_page' , category_id=category.category_id , cuisine_id = cuisine.id)}}">
+                    <div class="img-container">
+                        <img src="{{ url_for('static', filename=cuisine.image) }}" alt="{{ cuisine.cuisine_name }}">
+                        <div class="img-content">
+                            <h3>{{ cuisine.cuisine_name }}</h3>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+</body>
+</html>
