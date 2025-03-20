@@ -1,0 +1,833 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*,*::after,*::before{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html{
+    font-size: 62.5%;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+}
+
+/* ---------Utility classes--------- */
+
+.container{
+    max-width: 1200px;
+    width: 100%;
+    margin:auto ;
+}
+
+.btn{
+    display: inline-block;
+    padding: 1em 2.5em;
+    text-decoration: none;
+    border-radius: 50px;
+    cursor: pointer;
+    outline: none;
+    margin-top: 1em;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+.btn-primary{
+    color: #fff;
+    background: #16a083;
+}
+
+/*--------Navbar Styling--------- */
+
+.nav input[type="checkbox"],.nav .hori-lines{
+    display: none;
+}
+
+.nav{
+    box-shadow: 0px 5px 10px 0px #aaa;
+    position: fixed;
+    width: 100%;
+    background: white;
+    color: black;
+    opacity: 0.85;
+    z-index: 999;
+}
+
+.nav-container{
+    display: flex;
+    justify-content: space-between;
+    height: 64px;
+    align-items: center;
+
+}
+
+.nav .nav-items{
+    
+    order: 2;
+    display: flex;
+
+}
+
+.nav-items li{
+    list-style: none;
+    margin-left: 1.5rem;
+    font-size: 1.8rem;
+}
+
+
+.nav .logo{
+    order: 1;
+    font-size: 3rem;
+}
+
+.nav a{
+    color: #444;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease-in-out;
+}
+
+.nav a:hover{
+    color: #117964;
+}
+
+
+/* horizontal lines styling */
+.nav .nav-container input[type="checkbox"]{
+    margin-top: 1rem;
+    position: absolute;
+    display: block;
+    right: 20px; /* Move checkbox to right */ 
+    top: 15px;
+    width: 40px;
+    height: 32px;
+    z-index: 2;
+    opacity: 0;
+
+}
+
+.nav .nav-container .hori-lines{
+    margin-top: 1rem;
+    position: absolute;
+    width: 40px;
+    height: 32px;
+    top: 8px;
+    right: 20px; /* Move hamburger icon to right */
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+.nav .nav-container .hori-lines .line{
+    width: 100%;
+    height: 4px;
+    background: black;
+   border-radius: 10px;
+   transition: transform 0.1s ;
+}
+
+.nav .nav-container .hori-lines .line1{
+    transform-origin: 0% 0%;
+}
+
+.nav .nav-container .hori-lines .line3{
+    transform-origin: 0% 100%;
+}
+
+
+.nav .nav-container input[type="checkbox"]:checked~ .hori-lines .line{
+    background: white;
+    
+}
+
+.nav .nav-container input[type="checkbox"]:checked~ .hori-lines .line1{
+    transform: rotate(45deg);
+}
+
+.nav .nav-container input[type="checkbox"]:checked~ .hori-lines .line2{
+    display: none;
+}
+
+.nav .nav-container input[type="checkbox"]:checked~ .hori-lines .line3{
+    transform: rotate(-45deg);
+}
+
+/* Dropdown Menu Styling */
+.dropdown-menu {
+    position: absolute;
+    top: 60px; /* Below navbar */
+    right: 10px;
+    background: white;
+    width: 200px; /* Increased width */
+    border-radius: 8px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+    list-style: none;
+    padding: 10px 0;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease-in-out;
+}
+
+/* Dropdown Menu Items */
+.dropdown-menu li {
+    padding: 15px 20px; /* Increased height & width */
+    text-align: left;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 16px;
+}
+
+/* Menu Icons */
+.dropdown-menu li i {
+    /* color: #06777a; */
+    color: black;
+    font-size: 20px;
+}
+
+/* Menu Links */
+.dropdown-menu li a {
+    text-decoration: none;
+    color: black;
+    display: block;
+    flex-grow: 1;
+    transition: 0.3s;
+}
+
+/* Hover Effects */
+.dropdown-menu li:hover {
+    background: white;
+    cursor: pointer;
+}
+
+/* Logout Button Styling */
+.dropdown-menu .logout {
+    /* background: #4dffd8; */
+    color: white;
+}
+
+.dropdown-menu .logout:hover {
+    /* background: #00cccc; */
+    color: rgb(255, 255, 255);
+}
+
+/* Show Dropdown When Menu is Clicked */
+.nav-container input[type="checkbox"]:checked ~ .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* -----------Title area styling------------ */
+
+.title-area{
+    height:50vh;
+    /* background: url(/static/img/main.jfif);  */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.title-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    font-size: 1.6rem;
+}
+
+.title-container h1{
+    text-transform: uppercase;
+    font-size: 3rem;
+}
+
+.title-container p{
+    font-style: italic;
+    font-size: 2rem;
+    margin-top: 1rem;
+}
+
+.title-container a{
+    font-size: 2rem;
+}
+
+/* ----------About wrappper styling--------- */
+
+#about{
+    padding: 50px 0px;
+    background: #f5f5f5;
+}
+
+.about-wrapper{
+    
+    display:flex;
+    flex-wrap: wrap;
+}
+
+#about h2{
+    font-size: 3.2rem;
+
+}
+
+#about p{
+    font-size: 1.6rem;
+    color: #555;
+}
+
+#about .small{
+    font-size: 1.6rem;
+    color: #666;
+    font-weight: 600;
+}
+
+#about img{
+    flex: 1 1 400px;
+    padding: 30px;
+    
+}
+
+.about-text{
+    flex: 1 1 400px;
+    padding: 30px;
+    margin: auto;
+    transform: translate(-150%);
+    animation: about 1s forwards ease-in-out;
+}
+.about-img img{
+    display: block;
+    height: 800px;
+    max-width: 100%;
+    width: 600px;
+    margin: auto;
+    object-fit: cover;
+    object-position: right;
+    transform: translate(150%);
+    animation: about 1s forwards ease-in-out;
+}
+
+@keyframes about{
+    
+    100%{
+        transform: translate(0%);
+    }
+}
+
+/* --------Register page styling ---------*/
+
+.register-container{
+    margin-top: 100px;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.register-container h2 {
+    text-align: center;
+    color: #333;
+    font-size: 24px;
+}
+
+.register-container input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    outline: none;
+    transition: 0.3s;
+    font-size: 16px;
+}
+
+.register-container input:focus {
+    border-color: #ff5a8a;
+    box-shadow: 0 0 5px rgba(255, 90, 138, 0.5);
+}
+
+.register-container button {
+    width: 100%;
+    padding: 12px;
+    background: #ff5a8a;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* Button Hover */
+.register-container button:hover {
+    background: #e04a79;
+}
+
+.register-container p {
+    text-align: center;
+    margin-top: 10px;
+    color: #555;
+}
+
+.register-container a {
+    color: #ff5a8a;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.register-container a:hover {
+    text-decoration: underline;
+}
+
+/* Error Message */
+.register-container .error-message {
+    color: red;
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 10px;
+    display: none; /* Initially hidden */
+}
+
+
+/*----------- Login-container styling--------- */
+.login-container {
+    margin-top: 100px;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+}
+
+.login-container h2 {
+    margin-bottom: 10px;
+    font-size: large;
+}
+
+.login-container .input-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.login-container .input-group label {
+    display: block;
+    font-weight: bold;
+}
+
+.login-container .input-group input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.login-container .login-btn {
+    width: 100%;
+    padding: 10px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.login-container .login-btn:hover {
+    background: #0056b3;
+}
+
+.flash-messages {
+    margin-top: 15px;
+}
+
+.flash-message {
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+
+/* ---------------Profile container styling---------- */
+/* Profile Container */
+.profile-container {
+    width: 90%;
+    max-width: 700px;
+    margin: 50px auto;
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.profile-container h2 {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Profile Photo */
+.profile-photo img {
+    max-width: 150px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+}
+
+/* Profile Info */
+.profile-info {
+    margin-bottom: 30px;
+    text-align: left;
+}
+
+.profile-item {
+    margin: 15px 0;
+}
+
+.profile-item label {
+    font-weight: bold;
+    color: #333;
+}
+
+.profile-item input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.profile-item input[type="file"] {
+    border: none;
+}
+
+.btn-save {
+    padding: 12px 20px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.btn-save {
+    background-color: #008CBA;
+}
+
+.btn-save:hover {
+    background-color: #005f73;
+}
+
+
+/* ---------Food Category container styling----------- */
+#food {
+    padding: 5rem 0;
+}
+
+#food h2 {
+    text-align: center;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-transform: uppercase;
+    font-size: 4rem;
+    font-weight: 600;
+    margin-bottom: 3rem;
+    color: #333;
+}
+
+/* Category Container Styling */
+.category-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+/* Individual Box Styling */
+.food-box {
+    background-color: #f8f9fa; /* Light background color */
+    color: #333; /* Text color */
+    border-radius: 1rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    padding: 2rem 1.5rem;
+    text-align: center;
+    flex: 1 1 calc(25% - 2rem); /* Responsive sizing */
+    max-width: 200px;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+/* Hover Effects */
+.food-box:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2); /* Darker shadow */
+}
+
+/* Link Styling */
+.category-container .food-box .category-link {
+    text-decoration: none; /* Remove underline */
+    color: inherit; /* Use the parent text color */
+    font-size: 1.6rem;
+    font-weight: 500;
+    display: block;
+}
+
+/* Box Colors */
+.food-box:nth-child(1) {
+    background-color: #ffe4e1; /* Light pink */
+}
+
+.food-box:nth-child(2) {
+    background-color: #d3f4ff; /* Light blue */
+}
+
+.food-box:nth-child(3) {
+    background-color: #eaffd0; /* Light green */
+}
+
+.food-box:nth-child(4) {
+    background-color: #fff4d3; /* Light yellow */
+}
+
+.food-box:nth-child(5) {
+    background-color: #ffd9f0; /* Light magenta */
+}
+
+.food-box:nth-child(6) {
+    background-color: #e4d3ff; /* Light purple */
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .food-box {
+        flex: 1 1 calc(50% - 1rem); /* Two boxes per row on smaller screens */
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .food-box {
+        flex: 1 1 100%; /* One box per row on very small screens */
+    }
+}
+
+
+
+/* ---------Cuisine Container Styling----------- */
+
+#cuisine {
+    padding: 5rem 0 10rem 0;
+}
+
+#cuisine h2 {
+    text-align: center;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    text-transform: uppercase;
+    font-size: 5rem;
+    font-weight: 600;
+    margin-bottom: 40px;
+    color: black;
+}
+
+#cuisine .cuisine-container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    align-items: stretch;
+    gap: 1rem;
+}
+
+.cuisine-type {
+    flex: 1 1 calc(33.33% - 1rem); /* Ensures equal distribution of width */
+    text-align: center; /* Centers content */
+}
+
+.cuisine-type:nth-child(4),
+.cuisine-type:nth-child(5) {
+    flex: 1 1 calc(33.33% - 1rem);
+}
+
+#cuisine .cuisine-container::after {
+    content: '';
+    flex: 1 1 calc(33.33% - 1rem); /* Add an invisible item to balance the right side */
+}
+
+.cuisine-container img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    gap: 2rem;
+}
+
+.img-container {
+    position: relative;
+    width: 100%;
+    height: 600px; /* Set equal height for all image containers */
+    overflow: hidden; /* Ensures no overflow */
+    border-radius: 2rem;
+}
+
+.img-container .img-content {
+    text-align: center;
+    position: absolute;
+    bottom: 0%;
+    left: 50%;
+    transform: translate(-50%, 50%);
+    opacity: 0;
+    z-index: 2;
+    transition: all 0.3s ease-in-out;
+}
+
+.img-content h3 {
+    font-size: 3rem;
+    color: white;
+    font-weight: 500;
+}
+
+.img-container::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.712);
+    opacity: 0;
+    z-index: 1;
+    transform: scaleY(0);
+    transform-origin: 100% 100%;
+    transition: all 0.3s ease-in-out;
+} */
+
+.img-container:hover .img-content {
+    opacity: 1;
+    bottom: 50%;
+}
+
+.img-container:hover::after {
+    opacity: 1;
+    transform: scaleY(1);
+}
+
+.img-content a {
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+
+
+
+/* < ------Card container styling------ > */
+
+/* Recipe cards container */
+#recipe-cards {
+    padding: 2rem;
+    
+}
+
+#recipe-cards .card-container{
+    display: flex;
+    flex-wrap: wrap; /* Allows cards to wrap onto the next line if necessary */
+    flex-direction: row;
+    justify-content: center;
+    align-items: stretch;
+    gap: 1rem; /* Adds space between the cards */
+}
+
+/* Recipe card style */
+.recipe-card {
+    flex: 1 1 calc(33.33% - 2rem); /* Each card takes up roughly one-third of the row */
+    max-width: 300px; /* Optional: Set a maximum width for each card */
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: #fff;
+    position: relative;
+}
+
+.recipe-card:hover {
+    /* transform: scale(1.05); Slight enlarge effect on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Increased shadow on hover */
+}
+
+/* Image in the card */
+.recipe-card .card-image img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Card content area */
+.recipe-card .card-content {
+    padding: 1rem;
+    text-align: center;
+}
+
+/* Recipe name with link */
+.recipe-card .card-content h3 a {
+    font-size: 2.5rem;
+    font-weight: 600;
+    text-decoration: none;
+    color: #333;
+    transition: color 0.3s ease;
+}
+
+.recipe-card .card-content h3 a:hover {
+    color: #ff6f61; /* Change color on hover */
+}
+
+/* Like button */
+.recipe-card .like-btn {
+    background: none;
+    border: none;
+    font-size: 2.5rem;
+    cursor: pointer;
+    outline: none;
+    margin-top: 1rem;
+    transition: transform 0.3s ease;
+}
+
+.recipe-card .like-btn:hover {
+    transform: scale(1.3);
+    color: red; /* Slight enlarge effect on hover */
+}
+
+/* <-------Recipe cards header styling -------> */
+
+#recipe-cards h1{
+    text-align: center;
+    text-transform: uppercase;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    font-size: 5rem;
+    font-weight: 600;
+    margin-top: 100px;
+    margin-bottom: 40px;
+    color: rgb(60, 99, 128);
+}
+
