@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Foodies' Paradise{% endblock %}</title>
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <!-- JavaScript -->
+    <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-container container">
+            <input type="checkbox" id="menu-toggle">
+            <div class="hori-lines">
+                <span class="line line1"></span>
+                <span class="line line2"></span>
+                <span class="line line3"></span>
+            </div>
+
+            <ul class="dropdown-menu">
+                {% if username %}
+                    <li><i class="fas fa-user"></i> <a href="{{ url_for('profile') }}">Profile</a></li>
+                    <li><i class="fas fa-bookmark"></i> <a href="#">Saved List</a></li>
+                    <li><i class="fas fa-heart"></i> <a href="{{ url_for('liked_list') }}">Liked List</a></li>
+                    <li class="logout"><i class="fas fa-sign-out-alt"></i> <a href="{{ url_for('logout') }}">Logout</a></li>
+                {% else %}
+                    <li><i class="fas fa-sign-in-alt"></i> <a href="{{ url_for('login') }}">Login</a></li>
+                {% endif %}
+            </ul>
+            
+            <ul class="nav-items">
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('about') }}">About Us</a></li>
+                <li><a href="#">Category</a></li>
+            </ul>
+            
+            <h1 class="logo">Foodies' Paradise</h1>
+        </div>
+    </nav>
+    
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; <span id="year"></span> Foodies' Paradise. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
