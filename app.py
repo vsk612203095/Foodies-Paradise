@@ -17,11 +17,10 @@ def get_db_connection():
     )
 
 # Function to fetch user details
-def get_user_from_db(username):
+def get_user_from_db(identifier):
     connection = get_db_connection()
     cursor = connection.cursor()
-    query = "SELECT * FROM users WHERE username = %s"
-    cursor.execute(query, (username,))
+    cursor.execute("SELECT * FROM users WHERE username = %s OR email = %s", (identifier, identifier))
     user = cursor.fetchone()
     connection.close()
     return user
@@ -34,12 +33,13 @@ def home():
     cursor.execute("SELECT category_id, category_name FROM categories")
     categories = cursor.fetchall()
     connection.close()
+    
     return render_template('index.html', categories=categories, username=session.get('username'))
 
 # About Us Route
 @app.route('/about')
 def about():
-    return render_template('about.html')
+    return render_template('about.html', username=session.get('username'))
 
 # Cuisines Page Route
 @app.route('/cuisines/<int:category_id>')
@@ -47,39 +47,105 @@ def show_cuisines(category_id):
     connection = get_db_connection()
     cursor = connection.cursor()
 
-    # Fetch category name for the given category_id
+    # Fetch category name
     cursor.execute("SELECT category_name FROM categories WHERE category_id = %s", (category_id,))
-    category = cursor.fetchone()  # Returns None if no match
+    category = cursor.fetchone()
 
-    print("CATEGORY FETCHED:", category)  # Debugging statement
-
-    # If category_id doesn't exist, return a 404 error
+    # Handle invalid category
     if not category:
-        return f"Category with ID {category_id} not found", 404
-
-    category_name = category["category_name"]  # Extract category name
+        flash(f"Category with ID {category_id} not found.", "error")
+        return redirect(url_for('home'))
 
     # Fetch cuisines related to the category_id
     cursor.execute("SELECT cuisine_id, cuisine_name, cuisine_image FROM cuisines WHERE category_id = %s", (category_id,))
     cuisines = cursor.fetchall()
-
-    print("CUISINES FETCHED:", cuisines)  # Debugging statement
-
-    # Convert results into a list of dictionaries
-    cuisine_list = [{"cuisine_id": row["cuisine_id"], "cuisine_name": row["cuisine_name"], "cuisine_image": row["cuisine_image"]} for row in cuisines]
-
     connection.close()
 
-    return render_template('cuisine.html', category_name=category_name, cuisines=cuisine_list)
+    return render_template('cuisine.html', category_name=category['category_name'], cuisines=cuisines, username=session.get('username'))
 
+# Check if item is liked
+def is_item_liked(user_id, item_id, item_type):
+    connection = get_db_connection()
+    cursor = connection.cursor()
+    cursor.execute("SELECT * FROM liked_items WHERE user_id = %s AND item_id = %s AND item_type = %s",
+                   (user_id, item_id, item_type))
+    liked = cursor.fetchone()
+    connection.close()
+    return liked is not None
 
+# Like/Unlike an item
+@app.route('/toggle_like', methods=['POST'])
+def toggle_like():
+    if 'user_id' not in session:
+        return jsonify({'error': 'Login required'}), 401
 
+    user_id = session['user_id']
+    item_id = request.json.get('item_id')
+    item_type = request.json.get('item_type')
+
+    if not item_id or not item_type:
+        return jsonify({'error': 'Invalid request'}), 400
+
+    connection = get_db_connection()
+    cursor = connection.cursor()
+
+    if is_item_liked(user_id, item_id, item_type):
+        # Unlike item
+        cursor.execute("DELETE FROM liked_items WHERE user_id = %s AND item_id = %s AND item_type = %s",
+                       (user_id, item_id, item_type))
+        connection.commit()
+        connection.close()
+        return jsonify({'liked': False})
+    else:
+        # Like item
+        cursor.execute("INSERT INTO liked_items (user_id, item_id, item_type) VALUES (%s, %s, %s)",
+                       (user_id, item_id, item_type))
+        connection.commit()
+        connection.close()
+        return jsonify({'liked': True})
+
+# Liked List Route
+@app.route('/liked_list')
+def liked_list():
+    if 'user_id' not in session:
+        flash("Please log in to view your liked items.", "warning")
+        return redirect(url_for('login'))
+
+    conn = get_db_connection()
+    cursor = conn.cursor()
+
+    # Fetch liked cuisines
+    cursor.execute("""
+        SELECT cuisines.*, 
+               (SELECT COUNT(*) FROM liked_items WHERE liked_items.user_id = %s 
+                AND liked_items.item_id = cuisines.cuisine_id 
+                AND liked_items.item_type = 'cuisine') AS is_liked
+        FROM cuisines 
+        JOIN liked_items ON cuisines.cuisine_id = liked_items.item_id 
+        WHERE liked_items.user_id = %s AND liked_items.item_type = 'cuisine'
+        ORDER BY cuisines.cuisine_name ASC
+    """, (session['user_id'], session['user_id']))
+    liked_cuisines = cursor.fetchall()
+
+    # # Fetch liked recipes
+    # cursor.execute("""
+    #     SELECT recipes.*, 
+    #            (SELECT COUNT(*) FROM liked_items WHERE liked_items.user_id = %s 
+    #             AND liked_items.item_id = recipes.recipe_id 
+    #             AND liked_items.item_type = 'recipe') AS is_liked
+    #     FROM recipes 
+    #     JOIN liked_items ON recipes.recipe_id = liked_items.item_id 
+    #     WHERE liked_items.user_id = %s AND liked_items.item_type = 'recipe'
+    #     ORDER BY recipes.name ASC
+    # """, (session['user_id'], session['user_id']))
+    # liked_recipes = cursor.fetchall()
+
+    conn.close()
+    return render_template('liked_list.html', liked_cuisines=liked_cuisines , username=session.get('username'))
 
 # Register Route
 @app.route('/register', methods=['GET', 'POST'])
 def register():
-    message = None  # Initialize message
-
     if request.method == 'POST':
         username = request.form['username']
         email = request.form['email']
@@ -89,43 +155,35 @@ def register():
         cursor = connection.cursor()
 
         try:
-            cursor.execute("INSERT INTO users (username, email, password) VALUES (%s, %s, %s)",
-                           (username, email, password))
+            cursor.execute("INSERT INTO users (username, email, password) VALUES (%s, %s, %s)", (username, email, password))
             connection.commit()
             flash("Registration successful! Please log in.", "success")
             return redirect(url_for('login'))
         except pymysql.err.IntegrityError:
-            message = "Username or email already exists!"
+            flash("Username or email already exists!", "error")
         finally:
             connection.close()
 
-    return render_template('register.html', message=message)
+    return render_template('register.html')
 
 # Login Route
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        identifier = request.form.get('identifier')  # Can be username or email
+        identifier = request.form.get('identifier')
         password = request.form.get('password')
 
         if not identifier or not password:
             flash("Please enter both username/email and password.", "error")
             return redirect(url_for('login'))
 
-        connection = get_db_connection()
-        cursor = connection.cursor()
-
-        # Check if the identifier matches a username or an email
-        cursor.execute("SELECT * FROM users WHERE username = %s OR email = %s", (identifier, identifier))
-        user = cursor.fetchone()
-        connection.close()
+        user = get_user_from_db(identifier)
 
         if not user:
             flash("Username or email not found.", "error")
-        elif not bcrypt.check_password_hash(user['password'], password):  # Verify password with bcrypt
+        elif not bcrypt.check_password_hash(user['password'], password):
             flash("Incorrect password. Please try again.", "error")
         else:
-            # Successful login
             session['user_id'] = user['id']
             session['username'] = user['username']
             flash("Login successful!", "success")
@@ -152,7 +210,7 @@ def profile():
         flash("User not found.", "error")
         return redirect(url_for('login'))
 
-    return render_template('profile.html', user=user)
+    return render_template('profile.html', user=user, username=session.get('username'))
 
 # Logout Route
 @app.route('/logout')
