@@ -3,7 +3,7 @@ from flask_bcrypt import Bcrypt
 import pymysql
 
 app = Flask(__name__)
-app.secret_key = "vskokare7"  # Use a strong secret key
+app.secret_key = "Mahi7781@"  # Use a strong secret key
 bcrypt = Bcrypt(app)
 
 # Database connection function
@@ -42,29 +42,38 @@ def about():
     return render_template('about.html')
 
 # Cuisines Page Route
-@app.route('/cuisines')
-def show_cuisines():
+@app.route('/cuisines/<int:category_id>')
+def show_cuisines(category_id):
     connection = get_db_connection()
     cursor = connection.cursor()
-    query = """
-        SELECT c.cuisine_id, c.cuisine_name, c.cuisine_image, c.category_id, cat.category_name 
-        FROM cuisines c 
-        JOIN categories cat ON c.category_id = cat.category_id
-        ORDER BY cat.category_name;
-    """
-    cursor.execute(query)
-    results = cursor.fetchall()
+
+    # Fetch category name for the given category_id
+    cursor.execute("SELECT category_name FROM categories WHERE category_id = %s", (category_id,))
+    category = cursor.fetchone()  # Returns None if no match
+
+    print("CATEGORY FETCHED:", category)  # Debugging statement
+
+    # If category_id doesn't exist, return a 404 error
+    if not category:
+        return f"Category with ID {category_id} not found", 404
+
+    category_name = category["category_name"]  # Extract category name
+
+    # Fetch cuisines related to the category_id
+    cursor.execute("SELECT cuisine_id, cuisine_name, cuisine_image FROM cuisines WHERE category_id = %s", (category_id,))
+    cuisines = cursor.fetchall()
+
+    print("CUISINES FETCHED:", cuisines)  # Debugging statement
+
+    # Convert results into a list of dictionaries
+    cuisine_list = [{"cuisine_id": row["cuisine_id"], "cuisine_name": row["cuisine_name"], "cuisine_image": row["cuisine_image"]} for row in cuisines]
+
     connection.close()
 
-    # Organizing cuisines by category
-    categories = {}
-    for row in results:
-        category_name = row["category_name"]
-        if category_name not in categories:
-            categories[category_name] = []
-        categories[category_name].append(row)
+    return render_template('cuisine.html', category_name=category_name, cuisines=cuisine_list)
 
-    return render_template('cuisine.html', categories=categories)
+
+
 
 # Register Route
 @app.route('/register', methods=['GET', 'POST'])
@@ -153,5 +162,5 @@ def logout():
     return redirect(url_for('login'))
 
 # Run the Flask application
-if __name__ == '__main__':
-    app.run(debug=True)
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5001, debug=True)

@@ -49,8 +49,7 @@
         <div class="category-container container">
             {% for category in categories %}
             <div class="food-box">
-                <a href="{{ url_for('home',  category_id=category.category_id) }}" class="category-link">
-
+                <a href="{{ url_for('show_cuisines',  category_id=category.category_id) }}" class="category-link">
                     <h3>{{ category.category_name }}</h3>
                 </a>
             </div>
