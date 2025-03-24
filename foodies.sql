@@ -7,22 +7,30 @@ CREATE TABLE categories (
     category_image VARCHAR(255) NOT NULL
 );
 
+
 CREATE TABLE cuisines (
-    cuisine_id INT AUTO_INCREMENT PRIMARY KEY,
+    cuisine_id INT NOT NULL,
     cuisine_name VARCHAR(255) NOT NULL,
     category_id INT NOT NULL,
     cuisine_image VARCHAR(255) NOT NULL,
+    PRIMARY KEY (cuisine_id, category_id),
     FOREIGN KEY (category_id) REFERENCES categories(category_id)
 );
 
+
+
+
 CREATE TABLE food_items (
     food_id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
+    food_name VARCHAR(255) NOT NULL,
+    food_descript TEXT NOT NULL,
     cuisine_id INT NOT NULL,
-    recipe TEXT NOT NULL,
+    category_id INT NOT NULL,
+    food_recipe TEXT NOT NULL,
     food_image VARCHAR(255),
-    type ENUM('Veg', 'Non-Veg') NOT NULL, -- Add this column
-    FOREIGN KEY (cuisine_id) REFERENCES cuisines(cuisine_id)
+    food_type ENUM('Veg', 'Non-Veg') NOT NULL,
+    FOREIGN KEY (cuisine_id) REFERENCES cuisines(cuisine_id) ON DELETE CASCADE,
+    FOREIGN KEY (category_id) REFERENCES categories(category_id) 
 );
 
 CREATE TABLE users (
@@ -40,3 +48,4 @@ CREATE TABLE liked_cuisines (
     FOREIGN KEY (cuisine_id) REFERENCES cuisines(cuisine_id) ON DELETE CASCADE,
     UNIQUE (user_id, cuisine_id) -- Prevents duplicate likes
 );
+show tables;

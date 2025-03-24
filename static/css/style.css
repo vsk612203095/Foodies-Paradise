@@ -730,6 +730,104 @@ body{
 }
 
 
+/*<---------------------- food_item container---------------> */
+
+/* Section Styling */
+#food-items {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Keep the heading separate */
+#food-items h2 {
+    display: inline-flex; /* Keep h2 and icon in line */
+    align-items: center;
+    justify-content: center;
+    color: white;
+    background: #003049 ;/* Soft pastel color for peace */
+    border: 2px; /* Border to fit h2 size */
+    padding: 10px 20px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    border-radius: 10px; /* Smooth rounded corners */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    font-size: 1.8rem;
+}
+
+/* Food Items Grid */
+.food-items-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    justify-content: center;  /* Ensures proper alignment */
+    padding: 10px;
+}
+
+/* Food Item Card */
+.food-card {
+    background: #bde0fe;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    text-align: center;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.food-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Food Image */
+.food-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* Food Name */
+.food-card h3 {
+    font-size: 2rem;
+    margin: 10px 0;
+    color: #333;
+}
+
+/* Food Description */
+.food-card p {
+    font-size: 1.5rem;
+    color: #0d1b2a;
+    margin-bottom: 10px;
+}
+
+/* View Recipe Button */
+.view-recipe-btn {
+    display: inline-block;
+    padding: 8px 14px;
+    background: #ffafcc;
+    color: black;
+    border: 1px solid black;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: 600;
+    transition: background 0.1s ease;
+}
+
+.view-recipe-btn:hover {
+    background: #ffafcc;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .food-items-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+}
+
+
 
 /* < ------Card container styling------ > */
 

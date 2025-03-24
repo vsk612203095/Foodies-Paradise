@@ -16,7 +16,9 @@
                                 <img src="{{ cuisine.cuisine_image }}" alt="{{ cuisine.cuisine_name }}">
                             </a>
                             <div class="img-content">
-                                <h3>{{ cuisine.cuisine_name }}</h3>
+                                <a href="{{ url_for('show_food_items', cuisine_id=cuisine.cuisine_id, category_id=category_id) }}">
+                                    <h3>{{ cuisine.cuisine_name }}</h3>
+                                </a>
                             </div>
                         </div>
                         <div class="like-btn">

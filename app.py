@@ -3,7 +3,7 @@ from flask_bcrypt import Bcrypt
 import pymysql
 
 app = Flask(__name__)
-app.secret_key = "Mahi7781@"  # Use a strong secret key
+app.secret_key = "vskokare7"  # Use a strong secret key
 bcrypt = Bcrypt(app)
 
 # Database connection function
@@ -11,7 +11,7 @@ def get_db_connection():
     return pymysql.connect(
         host='localhost',
         user='root',
-        password='Mahi7781@',  # Replace with your actual MySQL password
+        password='vskokare7',  # Replace with your actual MySQL password
         database='foodies_db',
         cursorclass=pymysql.cursors.DictCursor  # Returns results as dictionaries
     )
@@ -45,10 +45,10 @@ def about():
 @app.route('/cuisines/<int:category_id>')
 def show_cuisines(category_id):
     connection = get_db_connection()
-    cursor = connection.cursor()
+    cursor = connection.cursor(pymysql.cursors.DictCursor)
 
     # Fetch category name
-    cursor.execute("SELECT category_name FROM categories WHERE category_id = %s", (category_id,))
+    cursor.execute("SELECT*FROM categories WHERE category_id = %s", (category_id,))
     category = cursor.fetchone()
 
     # Handle invalid category
@@ -61,7 +61,59 @@ def show_cuisines(category_id):
     cuisines = cursor.fetchall()
     connection.close()
 
-    return render_template('cuisine.html', category_name=category['category_name'], cuisines=cuisines, username=session.get('username'))
+    return render_template('cuisine.html', category_name=category['category_name'], cuisines=cuisines, category_id=category_id, username=session.get('username'))
+
+#food_items route
+@app.route('/food_items/<int:cuisine_id>/<int:category_id>')
+def show_food_items(cuisine_id, category_id):
+    connection = get_db_connection()
+    cursor = connection.cursor(pymysql.cursors.DictCursor)
+
+    # Fetch cuisine details
+    cursor.execute("SELECT cuisine_id, cuisine_name, category_id FROM cuisines WHERE cuisine_id = %s", (cuisine_id,))
+    cuisine = cursor.fetchone()
+    print("Cuisine fetched:", cuisine)
+
+    # Handle invalid cuisine
+    if not cuisine:
+        flash(f"Cuisine with ID {cuisine_id} not found.", "error")
+        return redirect(url_for('home'))
+
+    # Fetch food items based on cuisine and optionally category
+    cursor.execute("""
+            SELECT f.food_id, f.food_name, f.food_type, f.food_descript, f.food_image
+            FROM food_items f
+            WHERE f.cuisine_id = %s AND f.category_id = %s
+        """, (cuisine_id, category_id))
+    
+    food_items = cursor.fetchall()
+    connection.close()
+
+    return render_template(
+        'food_items.html',
+        cuisine=cuisine,
+        food_items=food_items
+    )
+
+#Recipe page route
+@app.route('/recipe/<int:food_id>')
+def view_recipe(food_id):
+    connection = get_db_connection()
+    cursor = connection.cursor(pymysql.cursors.DictCursor)
+
+    cursor.execute("SELECT food_name, food_recipe FROM food_items WHERE food_id = %s", (food_id,))
+    food = cursor.fetchone()
+
+    connection.close()
+
+    if not food:
+        flash("Recipe not found!", "error")
+        return redirect(url_for('home'))
+
+    return render_template('recipe.html', food=food)
+
+
+
 
 # Check if item is liked
 def is_item_liked(user_id, item_id, item_type):
