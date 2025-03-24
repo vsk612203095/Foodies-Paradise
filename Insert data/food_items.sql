@@ -77,4 +77,4 @@ INSERT INTO food_items (food_name, food_descript, cuisine_id, category_id, food_
     ('Laddoo', 'Sweet round balls made from flour, sugar, and ghee.', 1, 5, '1. Roast flour...\n2. Mix with sugar syrup and ghee...\n3. Shape into balls.', 'static/img/Indian-laddoo.jpg'; 'Veg');
     ('Jalebi', 'Crispy fried batter spirals soaked in sugar syrup.', 1, 5, '1. Prepare batter...\n2. Pipe in hot oil...\n3. Soak in syrup.', 'static/img/jalebi.jpg', 'Veg'),
     ('Rasmalai', 'Soft paneer balls soaked in flavored milk.', 1, 5, '1. Prepare paneer balls...\n2. Cook in saffron milk...\n3. Chill and serve.', 'static/img/Indian-rasmalai.jpg', 'Veg');
->>>>>>> 0268c64 (Updated image paths and fixed food items display)
+

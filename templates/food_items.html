@@ -1,35 +1,4 @@
 {% extends "base.html" %}
-
-<<<<<<< HEAD
-{% block title %}{{ cuisine.cuisine_name }} - Food Items{% endblock %}
-
-{% block content %}
-    <section id="food-items">
-        <h2>{{ cuisine.cuisine_name }} Food Items</h2>
-
-        {% for category in categories %}
-            <h3>{{ category.category_name }}</h3>
-            <div class="food-container container">
-                {% for food in food_items %}
-                    {% if food.category_id == category.category_id %}
-                        <div class="food-card">
-                            <img src="{{ food.food_image }}" alt="{{ food.name }}">
-                            <h3>{{ food.name }}</h3>
-                            <p>{{ food.recipe[:100] }}...</p>
-                            <button class="view-recipe-btn" onclick="showRecipe(`{{ food.recipe }}`)">View Recipe</button>
-                        </div>
-                    {% endif %}
-                {% endfor %}
-            </div>
-        {% endfor %}
-    </section>
-
-    <script>
-        function showRecipe(recipe) {
-            alert(recipe);
-        }
-    </script>
-=======
 {% block title %}{{ cuisine.cuisine_name }} {% endblock %}
 
 {% block content %}
@@ -48,5 +17,4 @@
             {% endfor %}
         </div>
     </section>
->>>>>>> 0268c64 (Updated image paths and fixed food items display)
 {% endblock %}
