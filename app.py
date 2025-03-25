@@ -57,7 +57,7 @@ def show_cuisines(category_id):
         return redirect(url_for('home'))
 
     # Fetch cuisines related to the category_id
-    cursor.execute("SELECT cuisine_id, cuisine_name, cuisine_image FROM cuisines WHERE category_id = %s", (category_id,))
+    cursor.execute("SELECT cuisine_id, cuisine_name, cuisine_image,category_id FROM cuisines WHERE category_id = %s", (category_id,))
     cuisines = cursor.fetchall()
     connection.close()
 
@@ -92,7 +92,7 @@ def show_food_items(cuisine_id, category_id):
     return render_template(
         'food_items.html',
         cuisine=cuisine,
-        food_items=food_items
+        food_items=food_items,username=session.get('username')
     )
 
 #Recipe page route
@@ -155,38 +155,6 @@ def toggle_like():
         connection.commit()
         connection.close()
         return jsonify({'liked': True})
-    
-
-@app.route('/food-items/<int:cuisine_id>')
-def show_food_items(cuisine_id):
-    connection = get_db_connection()
-    cursor = connection.cursor()  # Standard cursor (no dictionary=True)
-
-    # Fetch cuisine name
-    cursor.execute("SELECT cuisine_name FROM cuisines WHERE cuisine_id = %s", (cuisine_id,))
-    cuisine = cursor.fetchone()
-
-    # Handle invalid cuisine
-    if not cuisine:
-        flash(f"Cuisine with ID {cuisine_id} not found.", "error")
-        return redirect(url_for('home'))
-
-    # Fetch food items related to the cuisine_id
-    cursor.execute("SELECT food_id, food_name, food_image, description FROM food_items WHERE cuisine_id = %s", (cuisine_id,))
-    food_items = cursor.fetchall()
-
-    # Convert fetched results to dictionary manually
-    cuisine_name = cuisine[0]  # Since fetchone() returns a tuple
-    food_items_list = [{'food_id': row[0], 'food_name': row[1], 'food_image': row[2], 'description': row[3]} for row in food_items]
-
-    connection.close()
-
-    return render_template(
-        'food_items.html',
-        cuisine_name=cuisine_name,
-        food_items=food_items_list,
-        username=session.get('username', None)  # Prevents KeyError if no session exists
-    )
 
 
 # Liked List Route

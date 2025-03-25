@@ -703,10 +703,11 @@ body{
 }
 
 /* Cuisine Name */
-.img-content h3 {
+.img-content a {
     margin-top: 10px;
     font-size: 18px;
     color: #333;
+    text-decoration: none;
 }
 
 /* Like Button */

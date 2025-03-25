@@ -1,42 +1,3 @@
-<<<<<<< HEAD
-INSERT INTO food_items (name, cuisine_id, category_id, recipe, food_image, type)
-VALUES
-    ('Dosa', 1, 1, '1. Soak rice and urad dal for 6 hours. 
-                    2. Grind to a smooth batter and ferment overnight.
-                    3. Spread batter on a hot tawa and cook until golden brown. 
-                    4. Serve with chutney and sambar.', 
-                    'images/dosa.jpg', 'Veg'),
-
-    ('Idli', 1, 1, '1. Soak rice and urad dal separately for 6 hours. 
-                    2. Grind them and mix to form a smooth batter. 
-                    3. Ferment overnight, then steam in idli molds. 
-                    4. Serve with sambar and coconut chutney.', 
-                    'images/idli.jpg', 'Veg'),
-
-    ('Pohe', 1, 1, '1. Rinse poha (flattened rice) under water and drain. 
-                    2. Sauté mustard seeds, onions, and green chilies. 
-                    3. Add turmeric, poha, salt, and mix well. 
-                    4. Garnish with coriander and lemon juice.', 
-                    'images/poha.jpg', 'Veg'),
-
-    ('Upma', 1, 1, '1. Roast semolina (rava) in a pan until aromatic. 
-                    2. Sauté mustard seeds, curry leaves, and chilies in oil. 
-                    3. Add water, salt, and mix in roasted semolina. 
-                    4. Cook until thickened and garnish with coriander.', 
-                    'images/upma.jpg', 'Veg'),
-
-    ('Paratha', 1, 1, '1. Knead wheat flour with water to form a soft dough. 
-                        2. Roll into small circles, add filling (e.g., potato or paneer), and fold. 
-                        3. Roll again and cook on a tawa with ghee. 
-                        4. Serve hot with curd and pickle.', 
-                        'images/paratha.jpg', 'Veg'),
-
-    ('Chole Bhature', 1, 1, '1. Soak chickpeas overnight and pressure cook. 
-                              2. Cook chickpeas with onions, tomatoes, and spices. 
-                              3. Knead dough with maida, yogurt, and baking soda. 
-                              4. Roll and deep fry bhature. Serve hot with chole.', 
-                              'images/chole_bhature.jpg', 'Veg');
-=======
 -- Breakfast Items (category_id = 1)
 -- Indian Breakfast (category_id = 1)
 INSERT INTO food_items (food_name, food_descript, cuisine_id, category_id, food_recipe, food_image, food_type) VALUES
@@ -48,17 +9,15 @@ INSERT INTO food_items (food_name, food_descript, cuisine_id, category_id, food_
 
 -- Indian Lunch & Dinner (category_id = 2, 4)
 INSERT INTO food_items (food_name, food_descript, cuisine_id, category_id, food_recipe, food_image, food_type) VALUES
-    ('Paneer Tikka Masala', 'Grilled paneer in creamy tomato sauce.', 1, 2, '1. Marinate paneer...\n2. Grill and cook in sauce...\n3. Serve hot.', 'static/img/paneer_tikka_masala.jpg', 'Veg'),
-    ('Dal Fry', 'Lentil curry tempered with Indian spices.', 1, 2, '1. Boil dal...\n2. Prepare tempering...\n3. Mix and serve.', 'static/img/dal_fry.jpg', 'Veg'),
-    ('Dal Tadka', 'Lentil curry with aromatic garlic and spice tempering.', 1, 2, '1. Cook lentils...\n2. Prepare garlic tempering...\n3. Mix and serve.', 'static/img/dal_tadka.jpg', 'Veg'),
-    ('Varan Bhat', 'Simple Maharashtrian dal with rice.', 1, 2, '1. Boil dal...\n2. Add ghee and turmeric...\n3. Serve over rice.', 'static/img/varan_bhat.jpg', 'Veg'),
-    ('Bhindi Sabji', 'Stir-fried okra with Indian spices.', 1, 2, '1. Chop okra...\n2. Stir-fry with spices...\n3. Serve hot.', 'static/img/bhindi_sabji.jpg', 'Veg'),
-    ('Butter Chicken', 'Creamy chicken curry cooked in tomato-based sauce.', 1, 4, '1. Marinate chicken...\n2. Grill and cook in sauce...\n3. Serve hot.', 'static/img/butter_chicken.jpg', 'Non-Veg'),
-    ('Naan', 'Soft, fluffy Indian flatbread.', 1, 4, '1. Knead dough...\n2. Roll and cook on tandoor...\n3. Serve hot.', 'static/img/naan.jpg', 'Veg'),
-    ('Biryani', 'Aromatic rice dish with spices and meat or vegetables.', 1, 4, '1. Cook rice...\n2. Prepare meat and layer...\n3. Steam and serve.', 'static/img/biryani.jpg', 'Non-Veg'),
-    ('Veg Pulao', 'Fragrant rice dish cooked with vegetables and spices.', 1, 4, '1. Sauté vegetables...\n2. Add rice and cook...\n3. Serve hot.', 'static/img/Indian-pulao.jpg', 'Veg'),
-    ('Chicken Tikka Masala', 'Grilled chicken in spiced creamy tomato gravy.', 1, 4, '1. Marinate chicken...\n2. Grill and cook in sauce...\n3. Serve hot.', 'static/img/chicken_tikka_masala.jpg', 'Non-Veg');
-
+    ('Paneer Tikka Masala', 'Grilled paneer in creamy tomato sauce.', 1, 2, '1. Marinate paneer...\n2. Grill and cook in sauce...\n3. Serve hot.', 'static/img/Indian-paneer-tikka-masala.jpg', 'Veg'),
+    ('Chicken Tikka Masala', 'Grilled chicken in spiced creamy tomato gravy.', 1, 2, '1. Marinate chicken...\n2. Grill and cook in sauce...\n3. Serve hot.', 'static/img/Indian-chicken-tikka-masala.jpg', 'Non-Veg'),
+    ('Dal Tadka', 'Lentil curry with aromatic garlic and spice tempering.', 1, 2, '1. Cook lentils...\n2. Prepare garlic tempering...\n3. Mix and serve.', 'static/img/Indian-daltadka.jpg', 'Veg'),
+    ('Varan Bhat', 'Simple Maharashtrian dal with rice.', 1, 2, '1. Boil dal...\n2. Add ghee and turmeric...\n3. Serve over rice.', 'static/img/Indian-varan-bhat.jpg', 'Veg'),
+    ('Bhindi Sabji', 'Stir-fried okra with Indian spices.', 1, 2, '1. Chop okra...\n2. Stir-fry with spices...\n3. Serve hot.', 'static/img/Indian-bhindi-sabji.jpg', 'Veg'),
+    ('Butter Chicken', 'Creamy chicken curry cooked in tomato-based sauce.', 1, 2, '1. Marinate chicken...\n2. Grill and cook in sauce...\n3. Serve hot.', 'static/img/Indian-butter-chicken.jpg', 'Non-Veg'),
+    -- ('Naan', 'Soft, fluffy Indian flatbread.', 1, 2, '1. Knead dough...\n2. Roll and cook on tandoor...\n3. Serve hot.', 'static/img/Indian-naan.jpg', 'Veg'),
+    ('Biryani', 'Aromatic rice dish with spices and meat or vegetables.', 1, 2, '1. Cook rice...\n2. Prepare meat and layer...\n3. Steam and serve.', 'static/img/Indian-biryani.jpg', 'Non-Veg'),
+    ('Veg Pulao', 'Fragrant rice dish cooked with vegetables and spices.', 1, 2, '1. Sauté vegetables...\n2. Add rice and cook...\n3. Serve hot.', 'static/img/Indian-pulao.jpg', 'Veg');
 -- Indian Snacks (category_id = 3)
 INSERT INTO food_items (food_name, food_descript, cuisine_id, category_id, food_recipe, food_image, food_type) VALUES
     ('Vada Pav', 'Spicy potato fritter in a bun with chutney.', 1, 3, '1. Make potato stuffing...\n2. Coat and deep-fry...\n3. Serve in bun.', 'static/img/indian_snacks.jpg', 'Veg'),
@@ -74,7 +33,7 @@ INSERT INTO food_items (food_name, food_descript, cuisine_id, category_id, food_
 -- Indian Desserts (category_id = 5)
 INSERT INTO food_items (food_name, food_descript, cuisine_id, category_id, food_recipe, food_image, food_type) VALUES
     ('Gulab Jamun', 'Deep-fried milk dumplings soaked in sugar syrup.', 1, 5, '1. Make dough and shape balls...\n2. Deep fry and soak in syrup...', 'static/img/indian_dessert.jpg', 'Veg'),
-    ('Laddoo', 'Sweet round balls made from flour, sugar, and ghee.', 1, 5, '1. Roast flour...\n2. Mix with sugar syrup and ghee...\n3. Shape into balls.', 'static/img/Indian-laddoo.jpg'; 'Veg');
+    ('Laddoo', 'Sweet round balls made from flour, sugar, and ghee.', 1, 5, '1. Roast flour...\n2. Mix with sugar syrup and ghee...\n3. Shape into balls.', 'static/img/Indian-laddoo.jpg'; 'Veg'),
     ('Jalebi', 'Crispy fried batter spirals soaked in sugar syrup.', 1, 5, '1. Prepare batter...\n2. Pipe in hot oil...\n3. Soak in syrup.', 'static/img/jalebi.jpg', 'Veg'),
     ('Rasmalai', 'Soft paneer balls soaked in flavored milk.', 1, 5, '1. Prepare paneer balls...\n2. Cook in saffron milk...\n3. Chill and serve.', 'static/img/Indian-rasmalai.jpg', 'Veg');
 
