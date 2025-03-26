@@ -259,10 +259,11 @@ body{
 
 .title-area{
     height:50vh;
-    /* background: url(/static/img/main.jfif);  */
+    background: url(/static/img/title.jpg);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    
 }
 
 .title-container{
@@ -276,13 +277,16 @@ body{
 
 .title-container h1{
     text-transform: uppercase;
-    font-size: 3rem;
+    font-size: 4rem;
+    color: #003049;
+    font-weight: 900;
 }
 
 .title-container p{
     font-style: italic;
     font-size: 2rem;
     margin-top: 1rem;
+    color: rgb(173, 209, 103);
 }
 
 .title-container a{
