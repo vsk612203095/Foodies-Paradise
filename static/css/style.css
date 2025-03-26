@@ -40,6 +40,29 @@ body{
     background: #16a083;
 }
 
+
+/* Like Button */
+.like-btn {
+    cursor: pointer;
+    display: inline-flex; /* Ensures better click area */
+    align-items: center;
+    justify-content: center;
+    padding: 8px; /* Makes the button bigger and easier to click */
+    font-size: 20px; 
+}
+
+.like-btn i {
+    transition: color 0.1s ease-in-out;
+}
+
+.like-btn.liked i {
+    color: #ff006e !important;
+}
+
+.like-btn:not(.liked) i {
+    color: #333 !important; /* Default color */
+}
+
 /*--------Navbar Styling--------- */
 
 .nav input[type="checkbox"],.nav .hori-lines{
@@ -642,92 +665,113 @@ body{
 
 
 /* ---------Cuisine Container Styling----------- */
+/* Cuisine Grid Container */
+.cuisine-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Responsive grid */
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
+}
 
 #cuisines {
     text-align: center;
     margin: 0px 200px;
 }
 
+/* Style for the Section Heading */
 #cuisines h2 {
-    display: inline-flex; /* Keep h2 and icon in line */
+    display: inline-flex; /* Keeps text and icon in one line */
     align-items: center;
     justify-content: center;
     color: #333;
-    background: #cdb4db ;/* Soft pastel color for peace */
-    border: 2px; /* Border to fit h2 size */
-    padding: 10px 20px;
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4); /* Gradient for a cool look */
+    padding: 15px 30px;
     font-weight: 700;
-    margin-bottom: 20px;
-    border-radius: 10px; /* Smooth rounded corners */
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    font-size: 1.8rem;
+    font-size: 2rem;
+    margin-bottom: 30px;
+    border-radius: 12px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* Cool shadow effect */
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: transform 0.3s ease-in-out;
 }
 
+/* Lift effect on hover */
+#cuisines h2:hover {
+    transform: translateY(-5px);
+}
+
+/* Icon Styling */
 #cuisines h2 i {
-    margin-left: 15px; /* Adjust space between text and icon */
-    font-size: 1.6rem;
+    margin-left: 15px;
+    font-size: 1.8rem;
+    color: black; /* White icon to match gradient */
 }
 
-/* Cuisine Container */
-.cuisine-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-}
 
-/* Individual Cuisine Type */
+/* Individual Cuisine Card */
 .cuisine-type {
-    background: white;
+    background: #bbd0ff;
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    width: 250px;
     text-align: center;
     padding: 15px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.cuisine-type:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
 }
 
 /* Image Styling */
 .img-container {
-    position: relative;
     width: 100%;
     height: 180px;
     overflow: hidden;
+    border-radius: 10px;
 }
 
 .img-container img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+/* Cuisine Name & Like Button */
+.cuisine-details {
+    background: #fca311;
     border-radius: 10px;
-}
-
-/* Cuisine Name */
-.img-content a {
-    margin-top: 10px;
-    font-size: 18px;
-    color: #333;
-    text-decoration: none;
-}
-
-/* Like Button */
-.like-btn {
     display: flex;
+    flex-direction: row; /* Stack name and button vertically */
     align-items: center;
     justify-content: center;
     margin-top: 10px;
-    cursor: pointer;
-    font-size: 18px;
-    color: #ff6f61;
-    transition: color 0.3s ease;
+    padding: 10px 10px;
 }
 
-.like-btn:hover {
-    color: #d9534f;
-}
-
-.like-btn i {
+/* Cuisine Name */
+.cuisine-details a {
+    font-size: 22px;
+    color: #333;
+    font-weight: 700;
+    text-decoration: none;
     margin-right: 5px;
+}
+
+
+/* Responsive Fixes */
+@media (max-width: 768px) {
+    #cuisines {
+        margin: 0px 50px;
+    }
+
+    #cuisines h2 {
+        font-size: 1.6rem;
+        padding: 12px 20px;
+    }
 }
 
 

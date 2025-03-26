@@ -4,7 +4,9 @@
 
 {% block content %}
     <section id="recipe">
-        <h2>{{ food.food_name }} - Recipe</h2>
+        <h2>{{ food.food_name }} - Recipe <span class="like-btn" data-item-id="{{ food.food_id }}" data-item-type="recipe">
+            <i class="fas fa-heart"></i>
+        </span></h2>        
         <p>{{ food.food_recipe }}</p>
     </section>
 {% endblock %}

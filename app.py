@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, session, flash
+from flask import Flask, request, jsonify
 from flask_bcrypt import Bcrypt
 import pymysql
 
@@ -59,9 +60,23 @@ def show_cuisines(category_id):
     # Fetch cuisines related to the category_id
     cursor.execute("SELECT cuisine_id, cuisine_name, cuisine_image,category_id FROM cuisines WHERE category_id = %s", (category_id,))
     cuisines = cursor.fetchall()
-    connection.close()
+    
+    # Fetch liked items for the logged-in user
+    liked_items = []
+    user_id = session.get("user_id")
 
-    return render_template('cuisine.html', category_name=category['category_name'], cuisines=cuisines, category_id=category_id, username=session.get('username'))
+    if user_id:
+        cursor.execute("SELECT item_id FROM liked_items WHERE user_id = %s AND item_type = 'cuisine'", (user_id,))
+        liked_items = [row["item_id"] for row in cursor.fetchall()]  # Convert result to a list of IDs
+
+    connection.close()
+    
+    # Print for debugging
+    print("Liked items:", liked_items)
+    print("Session user_id:", session.get("user_id"))
+
+    
+    return render_template('cuisine.html', category_name=category['category_name'], cuisines=cuisines, category_id=category_id, username=session.get('username'),liked_items=liked_items)
 
 #food_items route
 @app.route('/food_items/<int:cuisine_id>/<int:category_id>')
@@ -87,12 +102,22 @@ def show_food_items(cuisine_id, category_id):
         """, (cuisine_id, category_id))
     
     food_items = cursor.fetchall()
+    
+    # Fetch liked items for the logged-in user
+    liked_items = []
+    user_id = session.get("user_id")
+
+    if user_id:
+        cursor.execute("SELECT item_id FROM liked_items WHERE user_id = %s AND item_type = 'food'", (user_id,))
+        liked_items = [row["item_id"] for row in cursor.fetchall()]  # Convert result to a list of IDs
+        
     connection.close()
 
     return render_template(
         'food_items.html',
         cuisine=cuisine,
-        food_items=food_items,username=session.get('username')
+        food_items=food_items,username=session.get('username'),
+        liked_items=liked_items
     )
 
 #Recipe page route
@@ -112,89 +137,60 @@ def view_recipe(food_id):
 
     return render_template('recipe.html', food=food)
 
-
-
-
-# Check if item is liked
-def is_item_liked(user_id, item_id, item_type):
-    connection = get_db_connection()
-    cursor = connection.cursor()
-    cursor.execute("SELECT * FROM liked_items WHERE user_id = %s AND item_id = %s AND item_type = %s",
-                   (user_id, item_id, item_type))
-    liked = cursor.fetchone()
-    connection.close()
-    return liked is not None
-
-# Like/Unlike an item
+#toggle like function
 @app.route('/toggle_like', methods=['POST'])
 def toggle_like():
     if 'user_id' not in session:
-        return jsonify({'error': 'Login required'}), 401
+        return jsonify({"error": "Unauthorized"}), 401  # Ensure user is logged in
 
+    data = request.get_json()
     user_id = session['user_id']
-    item_id = request.json.get('item_id')
-    item_type = request.json.get('item_type')
+    item_id = data.get('item_id')
+    item_type = data.get('item_type')
 
     if not item_id or not item_type:
-        return jsonify({'error': 'Invalid request'}), 400
+        return jsonify({"error": "Invalid request"}), 400
 
-    connection = get_db_connection()
-    cursor = connection.cursor()
-
-    if is_item_liked(user_id, item_id, item_type):
-        # Unlike item
-        cursor.execute("DELETE FROM liked_items WHERE user_id = %s AND item_id = %s AND item_type = %s",
-                       (user_id, item_id, item_type))
-        connection.commit()
-        connection.close()
-        return jsonify({'liked': False})
-    else:
-        # Like item
-        cursor.execute("INSERT INTO liked_items (user_id, item_id, item_type) VALUES (%s, %s, %s)",
-                       (user_id, item_id, item_type))
-        connection.commit()
-        connection.close()
-        return jsonify({'liked': True})
-
-
-# Liked List Route
-@app.route('/liked_list')
-def liked_list():
-    if 'user_id' not in session:
-        flash("Please log in to view your liked items.", "warning")
-        return redirect(url_for('login'))
-
-    conn = get_db_connection()
+    conn = get_db_connection() 
     cursor = conn.cursor()
 
-    # Fetch liked cuisines
-    cursor.execute("""
-        SELECT cuisines.*, 
-               (SELECT COUNT(*) FROM liked_items WHERE liked_items.user_id = %s 
-                AND liked_items.item_id = cuisines.cuisine_id 
-                AND liked_items.item_type = 'cuisine') AS is_liked
-        FROM cuisines 
-        JOIN liked_items ON cuisines.cuisine_id = liked_items.item_id 
-        WHERE liked_items.user_id = %s AND liked_items.item_type = 'cuisine'
-        ORDER BY cuisines.cuisine_name ASC
-    """, (session['user_id'], session['user_id']))
-    liked_cuisines = cursor.fetchall()
+    # Check if the item is already liked
+    cursor.execute("SELECT * FROM liked_items WHERE user_id=%s AND item_id=%s AND item_type=%s", (user_id, item_id, item_type))
+    existing = cursor.fetchone()
 
-    # # Fetch liked recipes
-    # cursor.execute("""
-    #     SELECT recipes.*, 
-    #            (SELECT COUNT(*) FROM liked_items WHERE liked_items.user_id = %s 
-    #             AND liked_items.item_id = recipes.recipe_id 
-    #             AND liked_items.item_type = 'recipe') AS is_liked
-    #     FROM recipes 
-    #     JOIN liked_items ON recipes.recipe_id = liked_items.item_id 
-    #     WHERE liked_items.user_id = %s AND liked_items.item_type = 'recipe'
-    #     ORDER BY recipes.name ASC
-    # """, (session['user_id'], session['user_id']))
-    # liked_recipes = cursor.fetchall()
+    if existing:
+        # Unlike: Remove from `liked_items` table
+        cursor.execute("DELETE FROM liked_items WHERE user_id=%s AND item_id=%s AND item_type=%s", (user_id, item_id, item_type))
+        conn.commit()
+        response = {"status": "unliked"}
+    else:
+        # Like: Add to `liked_items` table
+        cursor.execute("INSERT INTO liked_items (user_id, item_id, item_type) VALUES (%s, %s, %s)", (user_id, item_id, item_type))
+        conn.commit()
+        response = {"status": "liked"}
 
     conn.close()
-    return render_template('liked_list.html', liked_cuisines=liked_cuisines , username=session.get('username'))
+    return jsonify(response)
+
+
+@app.route('/liked_items', methods=['GET'])
+def get_liked_items():
+    if 'user_id' not in session:
+        return jsonify({"error": "Unauthorized"}), 401
+
+    user_id = session['user_id']
+    conn = get_db_connection()
+    cursor = conn.cursor(pymysql.cursors.DictCursor)
+
+    cursor.execute("SELECT * FROM liked_items WHERE user_id=%s", (user_id,))
+    liked_items = cursor.fetchall()
+
+    cursor.close()
+    conn.close()
+    return jsonify(liked_items)
+
+
+
 
 # Register Route
 @app.route('/register', methods=['GET', 'POST'])

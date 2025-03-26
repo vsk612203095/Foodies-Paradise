@@ -10,23 +10,32 @@
             </h2>
             <div class="cuisine-container container">
                 {% for cuisine in cuisines %}
-                    <div class="cuisine-type">
+                    <div class="cuisine-type" data-cuisine-id="{{ cuisine.cuisine_id }}">
                         <div class="img-container">
-                            <img src="{{ cuisine.cuisine_image }}" alt="{{ cuisine.cuisine_name }}">
-                            <div class="img-content">
-                                <a href="{{ url_for('show_food_items', cuisine_id=cuisine.cuisine_id, category_id=category_id) }}">
-                                    <h3>{{ cuisine.cuisine_name }}</h3>
-                                </a>
-                            </div>
+                            <img src="{{ url_for('static', filename=cuisine.cuisine_image.split('static/')[-1]) }}" alt="{{ cuisine.cuisine_name }}">
                         </div>
-                        <div class="like-btn">
-                            <i class="fas fa-heart"></i>
-                        </div>                    
+                        <div class="cuisine-details">
+                            <a href="{{ url_for('show_food_items', cuisine_id=cuisine.cuisine_id, category_id=category_id) }}">
+                                {{ cuisine.cuisine_name }}
+                            </a>
+                            <!-- Check if cuisine is in liked_items and change class accordingly -->
+                            <span class="like-btn {% if cuisine.cuisine_id in liked_items %}liked{% endif %}" data-item-id="{{cuisine.cuisine_id }}"data-item-type="cuisine">
+                                <i class="fas fa-heart"></i> <!-- Ensure the icon is inside span -->
+                            </span>
+
+                        </div>                   
                     </div>
                 {% endfor %}
+
             </div>
         </section>
     {% else %}
         <p>No cuisines available for {{ category_name }}.</p>
     {% endif %}
+
+    <script>
+        var likedItems = {{ liked_items | tojson | safe }};
+    </script>
+    
+
 {% endblock %}

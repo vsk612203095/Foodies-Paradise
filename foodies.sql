@@ -40,12 +40,13 @@ CREATE TABLE users (
     password VARCHAR(255) NOT NULL
 );
 
-CREATE TABLE liked_cuisines (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE liked_items (
+    liked_id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
-    cuisine_id INT NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
-    FOREIGN KEY (cuisine_id) REFERENCES cuisines(cuisine_id) ON DELETE CASCADE,
-    UNIQUE (user_id, cuisine_id) -- Prevents duplicate likes
+    item_id INT NOT NULL,
+    item_type ENUM('cuisine', 'food', 'recipe') NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE(user_id, item_id, item_type),  -- Prevent duplicate likes
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
-show tables;
+

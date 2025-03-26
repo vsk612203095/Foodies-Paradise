@@ -9,7 +9,10 @@
             {% for food in food_items %}
                 <div class="food-card">
                     <img src="{{ url_for('static', filename=food.food_image.replace('static/', '')) }}" alt="{{ food.food_name }}">
-                    <h3>{{ food.food_name }}</h3>
+                    <h3>{{ food.food_name }} <span class="like-btn {% if food.food_id in liked_items %}liked{% endif %}" data-item-id="{{food.food_id }}"data-item-type="food">
+                        <i class="fas fa-heart"></i> <!-- Ensure the icon is inside span -->
+                    </span></i>
+                    </span></h3>                    
                     <p><strong>Type:</strong> {{ food.food_type }}</p>
                     <p>{{ food.food_descript }}</p>
                     <a href="{{ url_for('view_recipe', food_id=food.food_id) }}" class="view-recipe-btn">View Recipe</a>
@@ -17,4 +20,7 @@
             {% endfor %}
         </div>
     </section>
+    <script>
+        var likedItems = {{ liked_items | tojson | safe }};
+    </script>
 {% endblock %}

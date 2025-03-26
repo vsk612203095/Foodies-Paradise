@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Liked Items - Foodies' Paradise{% endblock %}
+
+{% block content %}
+    <h2>Your Liked Items <i class="fas fa-heart"></i></h2>
+    {% if liked_items %}
+        <div class="liked-container">
+            {% for item in liked_items %}
+                <div class="liked-item">
+                    <div class="img-container">
+                        <img src="{{ url_for('static', filename=item.item_image.split('static/')[-1]) }}" alt="{{ item.item_name }}">
+                    </div>
+                    <div class="item-details">
+                        <h3>{{ item.item_name }}</h3>
+                        {% if item.item_type %}
+                            <p><strong>Type:</strong> {{ item.item_type }}</p>
+                        {% endif %}
+                        {% if item.item_description %}
+                            <p>{{ item.item_description }}</p>
+                        {% endif %}
+                        <button class="unlike-btn" data-item-id="{{ item.item_id }}" data-item-type="{{ item.item_type }}">
+                            Remove <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>You haven't liked any items yet.</p>
+    {% endif %}
+{% endblock %}
