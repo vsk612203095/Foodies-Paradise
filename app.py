@@ -12,7 +12,7 @@ def get_db_connection():
     return pymysql.connect(
         host='localhost',
         user='root',
-        password='Mahi7781@',  # Replace with your actual MySQL password
+        password='vskokare7',  # Replace with your actual MySQL password
         database='foodies_db',
         cursorclass=pymysql.cursors.DictCursor  # Returns results as dictionaries
     )
@@ -120,6 +120,7 @@ def show_food_items(cuisine_id, category_id):
         liked_items=liked_items
     )
 
+#Recipe page route
 @app.route('/recipe/<int:food_id>')
 def view_recipe(food_id):
     connection = get_db_connection()
@@ -127,7 +128,7 @@ def view_recipe(food_id):
 
     # Query to fetch recipe details
     cursor.execute("""
-        SELECT fi.food_name, r.recipe_instructions, r.recipe_ingredients 
+        SELECT fi.food_name,fi.food_image, r.recipe_instructions, r.recipe_ingredients 
         FROM recipes r
         JOIN food_items fi ON r.food_id = fi.food_id
         WHERE r.food_id = %s

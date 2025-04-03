@@ -880,63 +880,134 @@ body{
 
 /* < ------Card container styling------ > */
 
-/* Recipe Page Styles */
-#recipe {
-    display: flex;
-    justify-content: center;
-    padding: 40px 20px;
-    background-color: #f8f9fa;
-}
-
+/* Recipe Page Container */
 .recipe-container {
-    max-width: 800px;
-    background: #ffffff;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
+/* Centering the Food Name & Like Button */
 .recipe-container h2 {
     font-size: 28px;
     color: #333;
+    text-align: center;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
+    gap: 12px;
 }
 
-.like-btn {
+/* Like Button */
+.recipe-container .like-btn {
+    font-size: 22px;
     cursor: pointer;
-    font-size: 24px;
-    color: #888;
+    color: #aaa;
     transition: color 0.3s ease-in-out;
 }
 
-.like-btn:hover {
-    color: red;
-}
 
-.recipe-details h3 {
+/* Ingredients & Image Side-by-Side */
+.recipe-content {
+    display: flex;
+    
+    align-items: start;
+    gap: 10px;
     margin-top: 20px;
+}
+
+/* Ingredients on the Left */
+.ingredients {
+    width: 50%;
+}
+
+/* Ingredients Title */
+
+.ingredients-icon {
+    margin-left: 10px;  /* Adds space between text and icon */
+    color: #003049;  /* Change color (Orange) */
+    font-size: 22px;  /* Adjust icon size if needed */
+}
+
+.ingredients h3 {
     font-size: 22px;
-    color: #444;
+    color: #2a9d8f;
+    margin-bottom: 10px;
 }
 
-.recipe-details ul {
-    padding-left: 20px;
+/* Ingredients List */
+
+.ingredients ol {
+    list-style:none;
+    padding: 0;
 }
 
-.recipe-details ul li {
-    font-size: 18px;
+.ingredients ol li {
+    color: #344e41;
+    font-size: 20px;
+    font-weight: 600;
+    padding: 8px 12px;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.ingredients .fa-caret-square-right{
+    color: #bc6c25;
+}
+
+
+
+/* Food Image on the Right */
+.recipe-image img {
+    width: 400px;  /* Set a fixed width */
+    height: 500px; /* Set a fixed height */
+    object-fit: cover; /* Ensures the image fills the box without distortion */
+    border-radius: 12px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Instructions Below */
+.instructions {
+    margin-top: 30px;
+    text-align: left;
+}
+
+/* Instructions Title */
+.instructions h3 {
+    font-size: 22px;
+    color: #2a9d8f;
+    margin-bottom: 10px;
+}
+
+/* Instructions Content */
+.instructions p {
+    font-size: 20px;
+    font-weight: 600;
     line-height: 1.6;
-}
-
-.recipe-details p {
-    font-size: 18px;
-    line-height: 1.8;
     color: #555;
+    text-align: justify;
+    padding: 15px 20px;
+    background: #f8f9fa;
+    border-radius: 8px;
 }
 
+/* Responsive Design */
+@media (max-width: 768px) {
+    .recipe-content {
+        flex-direction: column;
+        align-items: center;
+    }
 
+    .ingredients, .recipe-image {
+        width: 100%;
+        text-align: center;
+    }
+}
 
 /*--------------- Chatbot styling --------------------*/
 #chatbot {
