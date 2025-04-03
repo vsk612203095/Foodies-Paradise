@@ -12,7 +12,7 @@ def get_db_connection():
     return pymysql.connect(
         host='localhost',
         user='root',
-        password='vskokare7',  # Replace with your actual MySQL password
+        password='Mahi7781@',  # Replace with your actual MySQL password
         database='foodies_db',
         cursorclass=pymysql.cursors.DictCursor  # Returns results as dictionaries
     )
@@ -126,7 +126,7 @@ def view_recipe(food_id):
     connection = get_db_connection()
     cursor = connection.cursor(pymysql.cursors.DictCursor)
 
-    cursor.execute("SELECT food_name, food_recipe FROM food_items WHERE food_id = %s", (food_id,))
+    cursor.execute("SELECT food_name, recipe_instructions , recipe_ingredients FROM food_items WHERE food_id = %s", (food_id,))
     food = cursor.fetchone()
 
     connection.close()
