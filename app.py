@@ -120,22 +120,43 @@ def show_food_items(cuisine_id, category_id):
         liked_items=liked_items
     )
 
-#Recipe page route
 @app.route('/recipe/<int:food_id>')
 def view_recipe(food_id):
     connection = get_db_connection()
     cursor = connection.cursor(pymysql.cursors.DictCursor)
 
-    cursor.execute("SELECT food_name, recipe_instructions , recipe_ingredients FROM food_items WHERE food_id = %s", (food_id,))
-    food = cursor.fetchone()
+    # Query to fetch recipe details
+    cursor.execute("""
+        SELECT fi.food_name, r.recipe_instructions, r.recipe_ingredients 
+        FROM recipes r
+        JOIN food_items fi ON r.food_id = fi.food_id
+        WHERE r.food_id = %s
+    """, (food_id,))
+    
+    recipe = cursor.fetchone()
 
-    connection.close()
-
-    if not food:
+    if not recipe:
         flash("Recipe not found!", "error")
         return redirect(url_for('home'))
 
-    return render_template('recipe.html', food=food)
+    # Fetch liked items for the logged-in user
+    liked_items = []
+    user_id = session.get("user_id")
+
+    if user_id:
+        cursor.execute("SELECT item_id FROM liked_items WHERE user_id = %s AND item_type = 'recipe'", (user_id,))
+        liked_items = [row["item_id"] for row in cursor.fetchall()]  # Convert result to a list of IDs
+        
+    connection.close()
+
+    return render_template(
+        'recipe.html',
+        recipe=recipe,
+        username=session.get('username'),
+        logged_in=('user_id' in session),  # Check if user is logged in
+        liked_items=liked_items
+    )
+
 
 #toggle like function
 @app.route('/toggle_like', methods=['POST'])

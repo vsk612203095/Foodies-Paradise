@@ -1,12 +1,27 @@
 {% extends "base.html" %}
 
-{% block title %}{{ food.food_name }} - Recipe{% endblock %}
+{% block title %}{{ recipe.food_name }} - Recipe{% endblock %}
 
 {% block content %}
     <section id="recipe">
-        <h2>{{ food.food_name }} - Recipe <span class="like-btn" data-item-id="{{ food.food_id }}" data-item-type="recipe">
-            <i class="fas fa-heart"></i>
-        </span></h2>        
-        <p>{{ food.food_recipe }}</p>
+        <div class="recipe-container">
+            <h2>{{ recipe.food_name }}
+                <span class="like-btn {% if recipe.food_id in liked_items %}liked{% endif %}" data-item-id="{{recipe.food_id }}" data-item-type="recipe">
+                    <i class="fas fa-heart"></i>
+                </span>
+            </h2>        
+
+            <div class="recipe-details">
+                <h3>Ingredients:</h3>
+                <ul>
+                    {% for ingredient in recipe.recipe_ingredients.split(',') %}
+                        <li>{{ ingredient.strip() }}</li>
+                    {% endfor %}
+                </ul>
+
+                <h3>Instructions:</h3>
+                <p>{{ recipe.recipe_instructions }}</p>
+            </div>
+        </div>
     </section>
 {% endblock %}

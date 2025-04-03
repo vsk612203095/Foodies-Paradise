@@ -880,92 +880,106 @@ body{
 
 /* < ------Card container styling------ > */
 
-/* Recipe cards container */
-#recipe-cards {
-    padding: 2rem;
-    
-}
-
-#recipe-cards .card-container{
+/* Recipe Page Styles */
+#recipe {
     display: flex;
-    flex-wrap: wrap; /* Allows cards to wrap onto the next line if necessary */
-    flex-direction: row;
     justify-content: center;
-    align-items: stretch;
-    gap: 1rem; /* Adds space between the cards */
+    padding: 40px 20px;
+    background-color: #f8f9fa;
 }
 
-/* Recipe card style */
-.recipe-card {
-    flex: 1 1 calc(33.33% - 2rem); /* Each card takes up roughly one-third of the row */
-    max-width: 300px; /* Optional: Set a maximum width for each card */
-    border: 1px solid #ddd;
-    border-radius: 20px;
-    overflow: hidden;
+.recipe-container {
+    max-width: 800px;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    background-color: #fff;
-    position: relative;
 }
 
-.recipe-card:hover {
-    /* transform: scale(1.05); Slight enlarge effect on hover */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Increased shadow on hover */
-}
-
-/* Image in the card */
-.recipe-card .card-image img {
-    width: 100%;
-    height: 400px;
-    object-fit: cover;
-    border-bottom: 1px solid #ddd;
-}
-
-/* Card content area */
-.recipe-card .card-content {
-    padding: 1rem;
-    text-align: center;
-}
-
-/* Recipe name with link */
-.recipe-card .card-content h3 a {
-    font-size: 2.5rem;
-    font-weight: 600;
-    text-decoration: none;
+.recipe-container h2 {
+    font-size: 28px;
     color: #333;
-    transition: color 0.3s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.recipe-card .card-content h3 a:hover {
-    color: #ff6f61; /* Change color on hover */
-}
-
-/* Like button */
-.recipe-card .like-btn {
-    background: none;
-    border: none;
-    font-size: 2.5rem;
+.like-btn {
     cursor: pointer;
-    outline: none;
-    margin-top: 1rem;
-    transition: transform 0.3s ease;
+    font-size: 24px;
+    color: #888;
+    transition: color 0.3s ease-in-out;
 }
 
-.recipe-card .like-btn:hover {
-    transform: scale(1.3);
-    color: red; /* Slight enlarge effect on hover */
+.like-btn:hover {
+    color: red;
 }
 
-/* <-------Recipe cards header styling -------> */
+.recipe-details h3 {
+    margin-top: 20px;
+    font-size: 22px;
+    color: #444;
+}
 
-#recipe-cards h1{
+.recipe-details ul {
+    padding-left: 20px;
+}
+
+.recipe-details ul li {
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+.recipe-details p {
+    font-size: 18px;
+    line-height: 1.8;
+    color: #555;
+}
+
+
+
+/*--------------- Chatbot styling --------------------*/
+#chatbot {
+    margin-top: 30px;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #f9f9f9;
     text-align: center;
-    text-transform: uppercase;
-    font-family:Georgia, 'Times New Roman', Times, serif;
-    font-size: 5rem;
-    font-weight: 600;
-    margin-top: 100px;
-    margin-bottom: 40px;
-    color: rgb(60, 99, 128);
+}
+
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+#chatBox {
+    width: 80%;
+    height: 200px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    padding: 10px;
+    background: white;
+}
+
+#userInput {
+    width: 60%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+#sendButton {
+    padding: 10px 20px;
+    background-color: #ff5722;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#sendButton:hover {
+    background-color: #e64a19;
 }
 
