@@ -4,7 +4,7 @@ from flask_bcrypt import Bcrypt
 import pymysql
 
 app = Flask(__name__)
-app.secret_key = "vskokare7"  # Use a strong secret key
+app.secret_key = ""  # Use a strong secret key
 bcrypt = Bcrypt(app)
 
 # Database connection function
@@ -12,7 +12,7 @@ def get_db_connection():
     return pymysql.connect(
         host='localhost',
         user='root',
-        password='vskokare7',  # Replace with your actual MySQL password
+        password='Mahi7781@',  # Replace with your actual MySQL password
         database='foodies_db',
         cursorclass=pymysql.cursors.DictCursor  # Returns results as dictionaries
     )

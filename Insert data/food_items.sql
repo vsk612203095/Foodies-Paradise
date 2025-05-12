@@ -1,6 +1,6 @@
 
 -- Western Cuisine (cuisine_id = 6)
-INSERT INTO food_items (food_name, food_descript, cuisine_id, category_id, food_recipe, food_image, food_type) VALUES
+INSERT INTO food_items (food_name, food_descript, cuisine_id, category_id,food_image, food_type) VALUES
 -- Breakfast (category_id = 1)
 ('Pancakes', 'Fluffy pancakes served with syrup.', 6, 1, 'Mix batter, cook on skillet, serve with syrup.', 'static/img/Western-Pancakes.jpg', 'Veg'),
 ('Omelette', 'Egg dish with cheese and veggies.', 6, 1, 'Beat eggs, cook with fillings.', 'static/img/Western-Omelette.jpg', 'Veg'),
