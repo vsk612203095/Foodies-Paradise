@@ -4,7 +4,7 @@ from flask_bcrypt import Bcrypt
 import pymysql
 
 app = Flask(__name__)
-app.secret_key = ""  # Use a strong secret key
+app.secret_key = "vskokare7"  # Use a strong secret key
 bcrypt = Bcrypt(app)
 
 # Database connection function
@@ -194,22 +194,56 @@ def toggle_like():
     conn.close()
     return jsonify(response)
 
-
-@app.route('/liked_items', methods=['GET'])
+#liked items list route
+@app.route('/liked_items')
 def get_liked_items():
     if 'user_id' not in session:
-        return jsonify({"error": "Unauthorized"}), 401
+        return redirect(url_for('login'))
 
     user_id = session['user_id']
     conn = get_db_connection()
     cursor = conn.cursor(pymysql.cursors.DictCursor)
 
-    cursor.execute("SELECT * FROM liked_items WHERE user_id=%s", (user_id,))
-    liked_items = cursor.fetchall()
+    cursor.execute("""
+        SELECT li.item_id, li.item_type, 
+           CASE 
+               WHEN li.item_type = 'food' THEN f.food_name
+               WHEN li.item_type = 'recipe' THEN fi.food_name
+               WHEN li.item_type = 'cuisine' THEN c.cuisine_name
+           END AS item_name,
+           CASE 
+               WHEN li.item_type = 'food' THEN cat.category_name
+               WHEN li.item_type = 'recipe' THEN cat.category_name
+               WHEN li.item_type = 'cuisine' THEN cat.category_name
+               ELSE NULL
+           END AS category_name,
+           CASE 
+               WHEN li.item_type = 'food' THEN f.food_image
+               WHEN li.item_type = 'recipe' THEN fi.food_image
+               WHEN li.item_type = 'cuisine' THEN c.cuisine_image
+           END AS item_image,
+           f.cuisine_id, f.category_id, c.category_id AS cuisine_category_id
+        FROM liked_items li
+        LEFT JOIN food_items f ON li.item_id = f.food_id AND li.item_type = 'food'
+        LEFT JOIN recipes r ON li.item_id = r.food_id AND li.item_type = 'recipe'
+        LEFT JOIN food_items fi ON r.food_id = fi.food_id
+        LEFT JOIN cuisines c ON li.item_id = c.cuisine_id AND li.item_type = 'cuisine'
+        LEFT JOIN categories cat ON (
+            (li.item_type = 'food' AND f.category_id = cat.category_id) OR
+            (li.item_type = 'recipe' AND fi.category_id = cat.category_id) OR
+            (li.item_type = 'cuisine' AND c.category_id = cat.category_id)
+        )
+        WHERE li.user_id = %s
+""", (user_id,))
 
-    cursor.close()
+
+    liked_items = cursor.fetchall()
     conn.close()
-    return jsonify(liked_items)
+
+    return render_template('liked_items.html', liked_items=liked_items)
+
+
+
 
 
 

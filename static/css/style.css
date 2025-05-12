@@ -1009,48 +1009,116 @@ body{
     }
 }
 
-/*--------------- Chatbot styling --------------------*/
-#chatbot {
-    margin-top: 30px;
-    padding: 20px;
-    border-radius: 10px;
+/*------------------------ liked list page styling------------- */
+
+.liked-items-table {
+    width: 100%;
+    margin: 20px auto;
+    border-collapse: collapse;
     background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1);
+    overflow: hidden; /* Ensure border radius clips contents */
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+
+
+.liked-items-table th, .liked-items-table td {
+    padding: 12px 5px;
     text-align: center;
+    font-size: 1.1em;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.chat-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-}
-
-#chatBox {
-    width: 80%;
-    height: 200px;
-    overflow-y: auto;
-    border: 1px solid #ccc;
-    padding: 10px;
-    background: white;
-}
-
-#userInput {
-    width: 60%;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-}
-
-#sendButton {
-    padding: 10px 20px;
-    background-color: #ff5722;
+.liked-items-table th {
+    background-color: #219ebc;
     color: white;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
+    font-size: 2.5em;
+    font-weight: bold;
+    box-shadow: inset 0px -2px 5px rgba(0, 0, 0, 0.2); /* Inner shadow on header */
 }
 
-#sendButton:hover {
-    background-color: #e64a19;
+.liked-items-table td {
+    background-color: #fefae0;
+    color: #333;
+    font-weight: 600;
+    border-bottom: 2px solid #ddd;
+    font-size: 2em;
 }
+
+.liked-items-table tr:hover td {
+    background-color: #fffae6; /* Light yellow on hover */
+    color: #000; /* Make text pop */
+    cursor: pointer;
+}
+
+.liked-items-table tbody tr:hover td {
+    color: #000;
+    font-size: 2.0em;
+    font-weight: 600;
+    transition: transform 0.3s ease;
+    transform: scale(1.1);
+    border-bottom: 2px solid #ddd;
+}
+
+
+.liked-items-table a {
+    text-decoration: none;
+    color: #333;
+}
+
+.liked-items-table a:hover {
+    color: #ff6f61; /* Accent color on hover */
+}
+
+.liked-items-table img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+.liked-items-table img:hover {
+    transform: scale(1.1);
+}
+
+.liked-items-table .item-details {
+    text-align: center;
+    padding-left: 15px;
+}
+
+#liked-heading {
+    text-align: center;
+    font-size: 3em;
+    color: #333;
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #cdb4db;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-transform: uppercase;
+}
+
+.liked-container {
+    padding: 20px;
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+    .liked-items-table {
+        width: 95%;
+    }
+
+    .liked-items-table th, .liked-items-table td {
+        font-size: 1em;
+        padding: 10px 12px;
+    }
+}
+
+
 
