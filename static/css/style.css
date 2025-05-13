@@ -10,10 +10,18 @@ html{
     font-size: 62.5%;
 }
 
+@media (max-width: 991px) {
+    html {
+        font-size: 55%;
+    }
+}
+
 body{
     font-family:'Poppins',sans-serif;
     padding: 100px 0 0;
 }
+
+
 
 /* ---------Utility classes--------- */
 
@@ -125,6 +133,23 @@ body{
     color: #117964;
 }
 
+
+@media (max-width: 991px) {
+    .nav .nav-items {
+        display: none;
+        flex-direction: column;
+        background: white;
+        width: 100%;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        box-shadow: 0px 5px 10px rgba(0,0,0,0.1);
+    }
+
+    .nav input[type="checkbox"]:checked ~ .nav-items {
+        display: flex;
+    }
+}
 
 /* horizontal lines styling */
 .nav .nav-container input[type="checkbox"]{
@@ -284,13 +309,104 @@ body{
 
 .title-container p{
     font-style: italic;
-    font-size: 2rem;
+    font-size: 2.5rem;
     margin-top: 1rem;
-    color: rgb(173, 209, 103);
+    font-weight: 600;
+    color: #10002b;
 }
 
 .title-container a{
     font-size: 2rem;
+}
+
+
+@media (max-width: 991px) {
+    .title-container h1 {
+        font-size: 3rem;
+    }
+
+    .title-container p {
+        font-size: 2rem;
+    }
+}
+
+/* -----------------Search bar Styling---------- */
+
+.search-container {
+    width: 60%;
+    margin: 30px auto;
+    position: relative;
+}
+
+#search-input {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.2em;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+#search-input:focus {
+    border-color: #219ebc;
+}
+
+#search-results {
+    background: white;
+    border-top: none;
+    max-height: 300px;
+    overflow-y: auto;
+    position: absolute;
+    width: 100%;
+    z-index: 100;
+    box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+    border-radius: 0 0 8px 8px;
+}
+
+#search-results ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+#search-results li {
+    padding: 12px 15px;
+    /* border-bottom: 1px solid #eee; */
+    cursor: pointer;
+}
+
+#search-results li:hover {
+    background-color: #f0f0f0;
+}
+
+#search-results a {
+    text-decoration: none;
+    color: #333;
+    font-size: 1.1em;
+    display: block;
+}
+
+.search-container button {
+    justify-content: center;
+    margin-top: 10px;
+    padding: 10px 20px;
+    font-size: 1.1em;
+    background-color: #219ebc;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.search-container button:hover {
+    background-color: #12697a;
+}
+
+@media (max-width: 991px) {
+    .search-container {
+        width: 80%;
+    }
 }
 
 /* ----------About wrappper styling--------- */
@@ -345,6 +461,13 @@ body{
     object-position: right;
     transform: translate(150%);
     animation: about 1s forwards ease-in-out;
+}
+
+@media (max-width: 991px) {
+    .about-img img {
+        height: auto;
+        width: 100%;
+    }
 }
 
 @keyframes about{
@@ -505,76 +628,7 @@ body{
 
 
 /* ---------------Profile container styling---------- */
-/* Profile Container */
-.profile-container {
-    width: 90%;
-    max-width: 700px;
-    margin: 50px auto;
-    background: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-}
 
-.profile-container h2 {
-    font-size: 28px;
-    color: #333;
-    margin-bottom: 20px;
-}
-
-/* Profile Photo */
-.profile-photo img {
-    max-width: 150px;
-    border-radius: 50%;
-    margin-bottom: 20px;
-}
-
-/* Profile Info */
-.profile-info {
-    margin-bottom: 30px;
-    text-align: left;
-}
-
-.profile-item {
-    margin: 15px 0;
-}
-
-.profile-item label {
-    font-weight: bold;
-    color: #333;
-}
-
-.profile-item input {
-    width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-    font-size: 16px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-}
-
-.profile-item input[type="file"] {
-    border: none;
-}
-
-.btn-save {
-    padding: 12px 20px;
-    background-color: #4CAF50;
-    color: white;
-    text-decoration: none;
-    border-radius: 8px;
-    font-weight: bold;
-    transition: background-color 0.3s;
-}
-
-.btn-save {
-    background-color: #008CBA;
-}
-
-.btn-save:hover {
-    background-color: #005f73;
-}
 
 
 /* ---------Food Category container styling----------- */

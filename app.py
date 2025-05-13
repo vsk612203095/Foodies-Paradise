@@ -243,8 +243,44 @@ def get_liked_items():
     return render_template('liked_items.html', liked_items=liked_items)
 
 
+#Search routes
+@app.route('/search')
+def search():
+    query = request.args.get('q', '').lower()
 
+    conn = get_db_connection()
+    cursor = conn.cursor(pymysql.cursors.DictCursor)
 
+    cursor.execute("""
+        SELECT 'food' AS item_type, fi.food_id AS item_id, fi.food_name AS name 
+        FROM food_items fi 
+        WHERE LOWER(fi.food_name) LIKE %s
+
+        UNION
+
+        SELECT 'recipe' AS item_type, r.recipe_id AS item_id, fi.food_name AS name 
+        FROM recipes r
+        JOIN food_items fi ON r.food_id = fi.food_id
+        WHERE LOWER(r.recipe_ingredients) LIKE %s
+
+        UNION
+
+        SELECT 'cuisine' AS item_type, c.cuisine_id AS item_id, c.cuisine_name AS name 
+        FROM cuisines c 
+        WHERE LOWER(c.cuisine_name) LIKE %s
+
+        UNION
+
+        SELECT 'category' AS item_type, cat.category_id AS item_id, cat.category_name AS name 
+        FROM categories cat 
+        WHERE LOWER(cat.category_name) LIKE %s
+        LIMIT 10
+    """, (f"%{query}%", f"%{query}%", f"%{query}%", f"%{query}%"))
+
+    results = cursor.fetchall()
+    conn.close()
+
+    return jsonify({'results': results})
 
 
 
