@@ -18,21 +18,21 @@ Foodies' Paradise is a dynamic and interactive recipe website built using **HTML
 
 ## 📸 Screenshots
 
-| Homepage | Categories |
+| Homepage | AboutUs Page |
 |----------|------------|
-| ![Homepage](screenshots/home.jpeg) | ![Categories](screenshots/home.jpeg) |
+| ![Homepage](screenshots/home.jpeg) | ![About Us](screenshots/about.jpeg) |
 
-| Cuisines Page | Food Items |
+| Categories Page | Cuisines Page |
 |---------------|------------|
-| ![Cuisines Page](screenshots/cuisine.jpeg) | ![Food Items](screenshots/food-items.jpeg) |
+| ![Categories](screenshots/home.jpeg)  | ![Cuisines Page](screenshots/cuisine.jpeg) |
 
-| Recipe Card | Liked List |
-|-------------|------------|
-| ![Recipe Card](screenshots/recipe.jpeg) | ![Liked List](screenshots/liked-items.jpeg) |
+|  Food Items   | Recipe Card |
+|---------------|-------------|
+|  ![Food Items](screenshots/food-items.jpeg) | ![Recipe Card](screenshots/recipe.jpeg) |
 
-| Search Bar |
-|--------|
-| ![Search Bar](screenshots/search.jpeg) |
+| Search Bar |  Liked List |
+|------------|-------------|
+| ![Search Bar](screenshots/search.jpeg) |  ![Liked List](screenshots/liked-items.jpeg)) |
 
 
 ---
@@ -71,6 +71,7 @@ FoodiesParadise/
 │   └── liked_items.html
 ├── screenshots/
 │   └── (all screenshots)
+├── Foodies Paradise.pdf
 ├── app.py
 ├── foodies.sql
 ├── Insert data/
