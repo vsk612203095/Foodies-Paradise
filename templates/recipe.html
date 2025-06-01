@@ -5,14 +5,10 @@
 {% block content %}
 <section id="recipe">
     <div class="recipe-container container">
-        <!-- Recipe Title + Like Button -->
         <h2>Recipe for {{ recipe.food_name }}<span class="like-btn {% if recipe.food_id in liked_items %}liked   {%endif %}" 
             data-item-id="{{recipe.food_id }}" data-item-type="recipe">
           <i class="fas fa-heart"></i>
   </span></h2>
-               
-
-        <!-- Ingredients & Image Side by Side -->
         <div class="recipe-content">
             <div class="recipe-details">
                 <div class="ingredients">
@@ -24,7 +20,6 @@
                         {% endfor %}
                     </ol>
                 </div>
-                <!-- Instructions Below -->
                 <div class="instructions">
                     <h3>Instructions<i class="fas fa-user-tie"></i></i></h3>
                     <p>{{ recipe.recipe_instructions }}</p>

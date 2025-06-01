@@ -55,11 +55,4 @@ INSERT INTO cuisines (cuisine_id,cuisine_name, category_id, cuisine_image) VALUE
     (6,'Western', 6, 'static/img/western_soup.jpg'),
     (4,'Japanese', 6, 'static/img/japanese_soup.jpg');
 
--- Beverages category (category_id = 7)
--- INSERT INTO cuisines (cuisine_name, category_id, cuisine_image) VALUES
---     ('Indian', 7, 'static/img/indian_beverages.jfif'),
---     ('Chinese', 7, 'static/img/chinese_beverages.jfif'),
---     ('Italian', 7, 'static/img/italian_beverages.jfif'),
---     ('Korean', 7, 'static/img/korean_beverages.jfif'),
---     ('Western', 7, 'static/img/western_beverages.jfif'),
---     ('Japanese', 7, 'static/img/japanese_beverages.jfif');
+

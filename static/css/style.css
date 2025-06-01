@@ -52,10 +52,10 @@ body{
 /* Like Button */
 .like-btn {
     cursor: pointer;
-    display: inline-flex; /* Ensures better click area */
+    display: inline-flex; 
     align-items: center;
     justify-content: center;
-    padding: 8px; /* Makes the button bigger and easier to click */
+    padding: 8px;
     font-size: 20px; 
 }
 
@@ -68,7 +68,7 @@ body{
 }
 
 .like-btn:not(.liked) i {
-    color: #333 !important; /* Default color */
+    color: #333 !important; 
 }
 
 /*--------Navbar Styling--------- */
@@ -156,7 +156,7 @@ body{
     margin-top: 1rem;
     position: absolute;
     display: block;
-    right: 20px; /* Move checkbox to right */ 
+    right: 20px; 
     top: 15px;
     width: 40px;
     height: 32px;
@@ -216,7 +216,7 @@ body{
 /* Dropdown Menu Styling */
 .dropdown-menu {
     position: absolute;
-    top: 60px; /* Below navbar */
+    top: 60px; 
     right: 10px;
     background: white;
     width: 200px; /* Increased width */
@@ -232,7 +232,7 @@ body{
 
 /* Dropdown Menu Items */
 .dropdown-menu li {
-    padding: 15px 20px; /* Increased height & width */
+    padding: 15px 20px; 
     text-align: left;
     display: flex;
     align-items: center;
@@ -242,7 +242,6 @@ body{
 
 /* Menu Icons */
 .dropdown-menu li i {
-    /* color: #06777a; */
     color: black;
     font-size: 20px;
 }
@@ -658,7 +657,7 @@ body{
     font-size: 14px;
     text-align: center;
     margin-bottom: 10px;
-    display: none; /* Initially hidden */
+    display: none; 
 }
 
 
@@ -765,27 +764,27 @@ body{
 
 /* Individual Box Styling */
 .food-box {
-    background-color: #f8f9fa; /* Light background color */
-    color: #333; /* Text color */
+    background-color: #f8f9fa;
+    color: #333;
     border-radius: 1rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     padding: 2rem 1.5rem;
     text-align: center;
-    flex: 1 1 calc(25% - 2rem); /* Responsive sizing */
+    flex: 1 1 calc(25% - 2rem); 
     max-width: 200px;
     transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
 
 /* Hover Effects */
 .food-box:hover {
-    transform: translateY(-5px); /* Lift effect on hover */
-    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2); /* Darker shadow */
+    transform: translateY(-5px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2); 
 }
 
 /* Link Styling */
 .category-container .food-box .category-link {
-    text-decoration: none; /* Remove underline */
-    color: inherit; /* Use the parent text color */
+    text-decoration: none;
+    color: inherit;
     font-size: 1.6rem;
     font-weight: 500;
     display: block;
@@ -793,39 +792,39 @@ body{
 
 /* Box Colors */
 .food-box:nth-child(1) {
-    background-color: #ffe4e1; /* Light pink */
+    background-color: #ffe4e1;
 }
 
 .food-box:nth-child(2) {
-    background-color: #d3f4ff; /* Light blue */
+    background-color: #d3f4ff; 
 }
 
 .food-box:nth-child(3) {
-    background-color: #eaffd0; /* Light green */
+    background-color: #eaffd0; 
 }
 
 .food-box:nth-child(4) {
-    background-color: #fff4d3; /* Light yellow */
+    background-color: #fff4d3; 
 }
 
 .food-box:nth-child(5) {
-    background-color: #ffd9f0; /* Light magenta */
+    background-color: #ffd9f0;
 }
 
 .food-box:nth-child(6) {
-    background-color: #e4d3ff; /* Light purple */
+    background-color: #e4d3ff; 
 }
 
 /* Responsive Design */
 @media screen and (max-width: 768px) {
     .food-box {
-        flex: 1 1 calc(50% - 1rem); /* Two boxes per row on smaller screens */
+        flex: 1 1 calc(50% - 1rem); 
     }
 }
 
 @media screen and (max-width: 480px) {
     .food-box {
-        flex: 1 1 100%; /* One box per row on very small screens */
+        flex: 1 1 100%; 
     }
 }
 
@@ -835,7 +834,7 @@ body{
 /* Cuisine Grid Container */
 .cuisine-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Responsive grid */
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
     gap: 20px;
     justify-content: center;
     padding: 20px;
@@ -848,17 +847,17 @@ body{
 
 /* Style for the Section Heading */
 #cuisines h2 {
-    display: inline-flex; /* Keeps text and icon in one line */
+    display: inline-flex; 
     align-items: center;
     justify-content: center;
     color: #333;
-    background: linear-gradient(135deg, #ff9a9e, #fad0c4); /* Gradient for a cool look */
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4); 
     padding: 15px 30px;
     font-weight: 700;
     font-size: 2rem;
     margin-bottom: 30px;
     border-radius: 12px;
-    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* Cool shadow effect */
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); 
     border: 2px solid rgba(0, 0, 0, 0.1);
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -874,7 +873,7 @@ body{
 #cuisines h2 i {
     margin-left: 15px;
     font-size: 1.8rem;
-    color: black; /* White icon to match gradient */
+    color: black;
 }
 
 
@@ -890,7 +889,7 @@ body{
 }
 
 .cuisine-type:hover {
-    transform: translateY(-5px); /* Lift effect on hover */
+    transform: translateY(-5px); 
 }
 
 /* Image Styling */
@@ -912,7 +911,7 @@ body{
     background: #fca311;
     border-radius: 10px;
     display: flex;
-    flex-direction: row; /* Stack name and button vertically */
+    flex-direction: row;
     align-items: center;
     justify-content: center;
     margin-top: 10px;
@@ -954,17 +953,17 @@ body{
 
 /* Keep the heading separate */
 #food-items h2 {
-    display: inline-flex; /* Keeps text and icon in one line */
+    display: inline-flex; 
     align-items: center;
     justify-content: center;
     color: #03045e;
-    background: linear-gradient(135deg, #00b4d8, #90e0ef); /* Gradient for a cool look */
+    background: linear-gradient(135deg, #00b4d8, #90e0ef); 
     padding: 15px 30px;
     font-weight: 700;
     font-size: 2rem;
     margin-bottom: 30px;
     border-radius: 12px;
-    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* Cool shadow effect */
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); 
     border: 2px solid rgba(0, 0, 0, 0.1);
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -976,7 +975,7 @@ body{
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 20px;
-    justify-content: center;  /* Ensures proper alignment */
+    justify-content: center; 
     padding: 10px;
 }
 
@@ -1091,11 +1090,10 @@ body{
 }
 
 /* Ingredients Title */
-
 .ingredients-icon {
-    margin-left: 10px;  /* Adds space between text and icon */
-    color: #003049;  /* Change color (Orange) */
-    font-size: 22px;  /* Adjust icon size if needed */
+    margin-left: 10px;  
+    color: #003049;  
+    font-size: 22px; 
 }
 
 .ingredients h3 {
@@ -1130,9 +1128,9 @@ body{
 
 /* Food Image on the Right */
 .recipe-image img {
-    width: 400px;  /* Set a fixed width */
-    height: 500px; /* Set a fixed height */
-    object-fit: cover; /* Ensures the image fills the box without distortion */
+    width: 400px;  
+    height: 500px; 
+    object-fit: cover; 
     border-radius: 12px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -1184,7 +1182,7 @@ body{
     background-color: #f9f9f9;
     border-radius: 8px;
     box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1);
-    overflow: hidden; /* Ensure border radius clips contents */
+    overflow: hidden;
     transition: box-shadow 0.3s ease-in-out;
 }
 
@@ -1202,7 +1200,7 @@ body{
     color: white;
     font-size: 2.5em;
     font-weight: bold;
-    box-shadow: inset 0px -2px 5px rgba(0, 0, 0, 0.2); /* Inner shadow on header */
+    box-shadow: inset 0px -2px 5px rgba(0, 0, 0, 0.2); 
 }
 
 .liked-items-table td {
@@ -1214,8 +1212,8 @@ body{
 }
 
 .liked-items-table tr:hover td {
-    background-color: #fffae6; /* Light yellow on hover */
-    color: #000; /* Make text pop */
+    background-color: #fffae6; 
+    color: #000; 
     cursor: pointer;
 }
 
@@ -1235,7 +1233,7 @@ body{
 }
 
 .liked-items-table a:hover {
-    color: #ff6f61; /* Accent color on hover */
+    color: #ff6f61; 
 }
 
 .liked-items-table img {

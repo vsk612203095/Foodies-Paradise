@@ -5,12 +5,12 @@
     <section id="food-items" class="food-container container">
         <h2>Discover {{ cuisine.cuisine_name }} cuisine</h2>
 
-        <div class="food-items-grid">  {# Add this wrapper #}
+        <div class="food-items-grid"> 
             {% for food in food_items %}
                 <div class="food-card">
                     <img src="{{ url_for('static', filename=food.food_image.replace('static/', '')) }}" alt="{{ food.food_name }}">
                     <h3>{{ food.food_name }} <span class="like-btn {% if food.food_id in liked_items %}liked{% endif %}" data-item-id="{{food.food_id }}"data-item-type="food">
-                        <i class="fas fa-heart"></i> <!-- Ensure the icon is inside span -->
+                        <i class="fas fa-heart"></i> 
                     </span></i>
                     </span></h3>                    
                     <p><strong>Type:</strong> {{ food.food_type }}</p>

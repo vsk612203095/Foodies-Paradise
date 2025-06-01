@@ -3,14 +3,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
     document.querySelectorAll(".like-btn").forEach(button => {
         button.addEventListener("click", function (event) {
-            event.preventDefault();  // Prevent default behavior
-            event.stopPropagation(); // Stop event bubbling
+            event.preventDefault();  
+            event.stopPropagation(); 
             
             const itemId = this.dataset.itemId;
             const itemType = this.dataset.itemType;
             const icon = this.querySelector("i");
 
-            console.log("Clicked:", itemId, itemType); // Debugging
+            console.log("Clicked:", itemId, itemType); 
 
             fetch('/toggle_like', {
                 method: "POST",
@@ -21,10 +21,10 @@ document.addEventListener("DOMContentLoaded", function () {
             .then(data => {
                 if (data.status === "liked") {
                     this.classList.add("liked");
-                    icon.style.color = "#ff006e";  // Change heart icon to red
+                    icon.style.color = "#ff006e";  
                 } else {
                     this.classList.remove("liked");
-                    icon.style.color = "#333";  // Change heart icon to black
+                    icon.style.color = "#333";  
                 }
                 console.log("Like status:", data.status); // Debugging
             })

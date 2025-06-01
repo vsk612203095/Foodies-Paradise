@@ -56,17 +56,9 @@ CREATE TABLE liked_items (
     item_id INT NOT NULL,
     item_type ENUM('cuisine', 'food', 'recipe') NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    UNIQUE(user_id, item_id, item_type),  -- Prevent duplicate likes
+    UNIQUE(user_id, item_id, item_type),  
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
-select*from food_items;
-select*from recipes;
-
-SELECT * FROM recipes WHERE recipe_ingredients LIKE '%Eggs%' OR recipe_ingredients LIKE '%Butter%';
-
-SELECT * FROM recipes WHERE LOWER(recipe_ingredients) LIKE '%egg%' OR LOWER(recipe_ingredients) LIKE '%onion%';
-
-SELECT * FROM recipes WHERE LOWER(recipe_ingredients) LIKE '%egg%' OR LOWER(recipe_ingredients) LIKE '%onion%';
 
 

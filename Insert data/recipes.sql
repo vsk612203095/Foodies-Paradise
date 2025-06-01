@@ -48,7 +48,7 @@ INSERT INTO recipes (food_id, food_name, recipe_ingredients, recipe_instructions
 
 INSERT INTO recipes (food_id, food_name, recipe_ingredients, recipe_instructions, cook_time) VALUES
 
--- 🔴 CHINESE CUISINE (cuisine_id = 2)
+-- CHINESE CUISINE (cuisine_id = 2)
 -- Breakfast
 (1, 'Dim Sum', 'Flour, pork filling, garlic, ginger, soy sauce.', 'Mix the filling, wrap in dough, steam for 15 mins.', '30 mins'),
 (2, 'Congee', 'Rice, water, chicken, soy sauce, ginger.', 'Boil rice with water until thick, add chicken and seasoning.', '40 mins'),
@@ -79,7 +79,7 @@ INSERT INTO recipes (food_id, food_name, recipe_ingredients, recipe_instructions
 (19, 'Tangyuan', 'Glutinous rice flour, sugar, water.', 'Make dough balls, boil in sweet syrup.', '30 mins'),
 (20, 'Egg Tarts', 'Flour, egg, sugar, milk.', 'Prepare crust, pour egg custard, bake.', '40 mins'),
 
--- 🟠 JAPANESE CUISINE (cuisine_id = 4)
+-- JAPANESE CUISINE (cuisine_id = 4)
 -- Breakfast
 (21, 'Tamago Kake Gohan', 'Rice, raw egg, soy sauce.', 'Crack egg over rice, mix well with soy sauce.', '5 mins'),
 (22, 'Miso Soup', 'Miso paste, tofu, seaweed, dashi broth.', 'Boil broth, add ingredients, simmer.', '15 mins'),

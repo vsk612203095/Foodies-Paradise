@@ -18,9 +18,9 @@
                             <a href="{{ url_for('show_food_items', cuisine_id=cuisine.cuisine_id, category_id=category_id) }}">
                                 {{ cuisine.cuisine_name }}
                             </a>
-                            <!-- Check if cuisine is in liked_items and change class accordingly -->
+
                             <span class="like-btn {% if cuisine.cuisine_id in liked_items %}liked{% endif %}" data-item-id="{{cuisine.cuisine_id }}"data-item-type="cuisine">
-                                <i class="fas fa-heart"></i> <!-- Ensure the icon is inside span -->
+                                <i class="fas fa-heart"></i> 
                             </span>
 
                         </div>                   

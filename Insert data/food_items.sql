@@ -1,26 +1,6 @@
 
--- Western Cuisine (cuisine_id = 6)
-INSERT INTO food_items (food_name, food_descript, cuisine_id, category_id,food_image, food_type) VALUES
--- Breakfast (category_id = 1)
-('Pancakes', 'Fluffy pancakes served with syrup.', 6, 1, 'Mix batter, cook on skillet, serve with syrup.', 'static/img/Western-Pancakes.jpg', 'Veg'),
-('Omelette', 'Egg dish with cheese and veggies.', 6, 1, 'Beat eggs, cook with fillings.', 'static/img/Western-Omelette.jpg', 'Veg'),
-
--- Lunch (category_id = 2)
-('Grilled Chicken', 'Chicken breast grilled with herbs.', 6, 2, 'Marinate chicken, grill until cooked.', 'static/img/Western-GrilledChicken.jpg', 'Non-Veg'),
-('Caesar Salad', 'Lettuce, croutons, cheese, and Caesar dressing.', 6, 2, 'Toss ingredients with dressing.', 'static/img/Western-CaesarSalad.jpg', 'Veg'),
-
--- Snacks (category_id = 3)
-('French Fries', 'Crispy deep-fried potato fries.', 6, 3, 'Cut potatoes, deep fry until golden.', 'static/img/Western-FrenchFries.jpg', 'Veg'),
-('Club Sandwich', 'Triple-layer sandwich with chicken and bacon.', 6, 3, 'Layer bread with fillings and toast.', 'static/img/Western-ClubSandwich.jpg', 'Non-Veg'),
-
--- Dinner (category_id = 4)
-('Steak', 'Juicy beef steak grilled to perfection.', 6, 4, 'Season steak, grill to desired doneness.', 'static/img/Western-Steak.jpg', 'Non-Veg'),
-('Mac and Cheese', 'Creamy macaroni pasta in cheese sauce.', 6, 4, 'Cook pasta, mix with cheese sauce.', 'static/img/Western-MacAndCheese.jpg', 'Veg');
-
-
-
-
 INSERT INTO food_items (food_name, food_descript, cuisine_id, category_id, food_image, food_type) VALUES
+--Indian Cuisine
 -- Breakfast (category_id = 1)
 ('Idli', 'Soft steamed rice cakes, a staple South Indian breakfast dish.', 1, 1, 'static/img/Indian-idli.jpg', 'Veg'),
 ('Dosa', 'Crispy and thin fermented rice and lentil crepe.', 1, 1, 'static/img/Indian-dosa.jpg', 'Veg'),
@@ -68,7 +48,7 @@ INSERT INTO food_items (food_name, food_descript, cuisine_id, category_id, food_
 
 INSERT INTO food_items (food_name, food_descript, cuisine_id, category_id, food_image, food_type) VALUES
 
--- 🔴 CHINESE CUISINE (cuisine_id = 2)
+-- CHINESE CUISINE (cuisine_id = 2)
 -- Breakfast
 ('Dim Sum', 'Steamed dumplings filled with meat or vegetables.', 2, 1, 'static/img/Chinese-DimSum.jpg', 'Non-Veg'),
 ('Congee', 'Rice porridge with chicken, pork, or fish.', 2, 1, 'static/img/Chinese-Congee.jpg', 'Non-Veg'),
@@ -99,7 +79,7 @@ INSERT INTO food_items (food_name, food_descript, cuisine_id, category_id, food_
 ('Tangyuan', 'Glutinous rice dumplings in sweet syrup.', 2, 5, 'static/img/Chinese-Tangyuan.jpg', 'Veg'),
 ('Egg Tarts', 'Flaky pastry filled with egg custard.', 2, 5, 'static/img/Chinese-EggTarts.jpg', 'Veg'),
 
--- 🟠 JAPANESE CUISINE (cuisine_id = 4)
+-- JAPANESE CUISINE (cuisine_id = 4)
 -- Breakfast
 ('Tamago Kake Gohan', 'Steamed rice topped with raw egg and soy sauce.', 4, 1, 'static/img/Japanese-TamagoKakeGohan.jpg', 'Veg'),
 ('Miso Soup', 'Traditional soup with tofu, seaweed, and miso paste.', 4, 1, 'static/img/Japanese-MisoSoup.jpg', 'Veg'),
@@ -133,7 +113,7 @@ INSERT INTO food_items (food_name, food_descript, cuisine_id, category_id, food_
 
 INSERT INTO food_items (food_name, food_descript, cuisine_id, category_id, food_image, food_type) VALUES
 
--- 🟡 KOREAN CUISINE (cuisine_id = 3)
+-- KOREAN CUISINE (cuisine_id = 3)
 -- Breakfast
 ('Kimchi Fried Rice', 'Rice stir-fried with kimchi and egg.', 3, 1, 'static/img/Korean-KimchiFriedRice.jpg', 'Veg'),
 ('Korean Pancakes', 'Savory pancakes with scallions and vegetables.', 3, 1, 'static/img/Korean-Pajeon.jpg', 'Veg'),
@@ -164,7 +144,7 @@ INSERT INTO food_items (food_name, food_descript, cuisine_id, category_id, food_
 ('Yakgwa', 'Korean honey cookies with a chewy texture.', 3, 5, 'static/img/Korean-Yakgwa.jpg', 'Veg'),
 ('Dasik', 'Korean tea cookies made from sesame and honey.', 3, 5, 'static/img/Korean-Dasik.jpg', 'Veg'),
 
--- 🔵 ITALIAN CUISINE (cuisine_id = 5)
+-- ITALIAN CUISINE (cuisine_id = 5)
 -- Breakfast
 ('Frittata', 'Italian-style omelet with cheese and vegetables.', 5, 1, 'static/img/Italian-Frittata.jpg', 'Veg'),
 ('Cornetti', 'Italian croissant served with jam.', 5, 1, 'static/img/Italian-Cornetti.jpg', 'Veg'),
@@ -194,5 +174,26 @@ INSERT INTO food_items (food_name, food_descript, cuisine_id, category_id, food_
 ('Cannoli', 'Crispy pastry shells filled with ricotta.', 5, 5, 'static/img/Italian-Cannoli.jpg', 'Veg'),
 ('Panna Cotta', 'Creamy vanilla dessert topped with fruit sauce.', 5, 5, 'static/img/Italian-PannaCotta.jpg', 'Veg'),
 ('Gelato', 'Traditional Italian-style ice cream.', 5, 5, 'static/img/Italian-Gelato.jpg', 'Veg');
+
+
+
+INSERT INTO food_items (food_name, food_descript, cuisine_id, category_id,food_image, food_type) VALUES
+-- Western Cuisine
+-- Breakfast (category_id = 1)
+('Pancakes', 'Fluffy pancakes served with syrup.', 6, 1, 'Mix batter, cook on skillet, serve with syrup.', 'static/img/Western-Pancakes.jpg', 'Veg'),
+('Omelette', 'Egg dish with cheese and veggies.', 6, 1, 'Beat eggs, cook with fillings.', 'static/img/Western-Omelette.jpg', 'Veg'),
+
+-- Lunch (category_id = 2)
+('Grilled Chicken', 'Chicken breast grilled with herbs.', 6, 2, 'Marinate chicken, grill until cooked.', 'static/img/Western-GrilledChicken.jpg', 'Non-Veg'),
+('Caesar Salad', 'Lettuce, croutons, cheese, and Caesar dressing.', 6, 2, 'Toss ingredients with dressing.', 'static/img/Western-CaesarSalad.jpg', 'Veg'),
+
+-- Snacks (category_id = 3)
+('French Fries', 'Crispy deep-fried potato fries.', 6, 3, 'Cut potatoes, deep fry until golden.', 'static/img/Western-FrenchFries.jpg', 'Veg'),
+('Club Sandwich', 'Triple-layer sandwich with chicken and bacon.', 6, 3, 'Layer bread with fillings and toast.', 'static/img/Western-ClubSandwich.jpg', 'Non-Veg'),
+
+-- Dinner (category_id = 4)
+('Steak', 'Juicy beef steak grilled to perfection.', 6, 4, 'Season steak, grill to desired doneness.', 'static/img/Western-Steak.jpg', 'Non-Veg'),
+('Mac and Cheese', 'Creamy macaroni pasta in cheese sauce.', 6, 4, 'Cook pasta, mix with cheese sauce.', 'static/img/Western-MacAndCheese.jpg', 'Veg');
+
 
 
