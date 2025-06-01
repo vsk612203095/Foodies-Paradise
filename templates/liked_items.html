@@ -3,30 +3,50 @@
 {% block title %}Liked Items - Foodies' Paradise{% endblock %}
 
 {% block content %}
-    <h2>Your Liked Items <i class="fas fa-heart"></i></h2>
-    {% if liked_items %}
-        <div class="liked-container">
-            {% for item in liked_items %}
-                <div class="liked-item">
-                    <div class="img-container">
-                        <img src="{{ url_for('static', filename=item.item_image.split('static/')[-1]) }}" alt="{{ item.item_name }}">
-                    </div>
-                    <div class="item-details">
-                        <h3>{{ item.item_name }}</h3>
-                        {% if item.item_type %}
-                            <p><strong>Type:</strong> {{ item.item_type }}</p>
-                        {% endif %}
-                        {% if item.item_description %}
-                            <p>{{ item.item_description }}</p>
-                        {% endif %}
-                        <button class="unlike-btn" data-item-id="{{ item.item_id }}" data-item-type="{{ item.item_type }}">
-                            Remove <i class="fas fa-trash"></i>
-                        </button>
-                    </div>
-                </div>
-            {% endfor %}
-        </div>
-    {% else %}
-        <p>You haven't liked any items yet.</p>
-    {% endif %}
+    <div class="liked-container container">
+        <h2 id="liked-heading" style="text-align: center;">Explore Your Favourites <i class="fas fa-heart"></i></h2>
+
+        {% if liked_items %}
+            <table class="liked-items-table">
+                <thead>
+                    <tr>
+                        <th>Item Name</th>
+                        <th>Type</th>
+                        <th>Category</th>
+                        <th>Image</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in liked_items %}
+                        <tr>
+                            <td>
+                                <a href="
+                                    {% if item.item_type == 'food' %}
+                                        {{ url_for('show_food_items', cuisine_id=item.cuisine_id, category_id=item.category_id) }}
+                                    {% elif item.item_type == 'recipe' %}
+                                        {{ url_for('view_recipe', food_id=item.item_id) }}
+                                    {% elif item.item_type == 'cuisine' %}
+                                        {{ url_for('show_cuisines', category_id=item.cuisine_category_id) }}
+                                    {% endif %}
+                                ">
+                                {{ item.item_name }}
+                                </a>
+                            </td>
+                            <td>{{ item.item_type|capitalize }}</td>
+                            <td>{{ item.category_name}}</td>
+                            <td>
+                                {% if item.item_image %}
+                                    <img src="{{ url_for('static', filename=item.item_image.split('static/')[-1]) }}" alt="{{ item.item_name }}">
+                                {% else %}
+                                    No Image
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p style="text-align: center;">You haven't liked any items yet.</p>
+        {% endif %}
+    </div>
 {% endblock %}

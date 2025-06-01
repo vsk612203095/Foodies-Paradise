@@ -9,6 +9,16 @@
             <p>Eat healthy, eat tasty, and live wealthy.</p>
         </div>   
     </section>
+    <section id="search-bar">
+        <div class="search-container container">
+            <div class="search-container">
+                <input type="text" id="search-input" placeholder="Search here..." oninput="performSearch()">
+                <button onclick="performSearch()">Search</button>
+            <div id="search-results"></div>
+        </div>
+  
+        </div>
+    </section>
 
     <section id="food">
         <h2></h2>
@@ -22,4 +32,6 @@
             {% endfor %}
         </div>
     </section>
+    
+        
 {% endblock %}

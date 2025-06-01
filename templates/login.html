@@ -9,8 +9,6 @@
 <body>
     <div class="login-container container">
         <h2>Login</h2>
-
-        <!-- Login Form -->
         <form action="{{ url_for('login') }}" method="POST">
             <div class="input-group">
                 <label for="identifier"><i class="fas fa-user"></i> </label>
@@ -27,7 +25,6 @@
 
         <p>Don't have an account? <a href="{{ url_for('register') }}">Register</a></p>
 
-        <!-- Flash Messages for Success/Error -->
         {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
                 <div class="flash-messages">
