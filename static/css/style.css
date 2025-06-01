@@ -280,6 +280,85 @@ body{
     transform: translateY(0);
 }
 
+
+
+/* -----------------Footer styling-------------- */
+.site-footer {
+    background-color: #2c3e50;
+    color: #ecf0f1;
+    padding: 40px 0 20px 0;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+
+.footer-container div {
+    flex: 1 1 250px;
+    margin: 20px 0;
+}
+
+.footer-about h3,
+.footer-links h4,
+.footer-social h4 {
+    margin-bottom: 15px;
+    font-size: 20px;
+    color: #f39c12;
+}
+
+.footer-about p {
+    line-height: 1.6;
+    font-size: 1.5rem;
+}
+
+.footer-links ul {
+    font-size: 1.5rem;
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links ul li {
+    margin-bottom: 10px;
+}
+
+.footer-links ul li a {
+    color: #ecf0f1;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-links ul li a:hover {
+    color: #f39c12;
+}
+
+.footer-social .social-icons a {
+    margin-right: 10px;
+    color: #ecf0f1;
+    font-size: 20px;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-social .social-icons a:hover {
+    color: #f39c12;
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 30px;
+    border-top: 1px solid #7f8c8d;
+    padding-top: 10px;
+    font-size: 1.5rem;
+}
+
+
+
 /* -----------Title area styling------------ */
 
 .title-area{
@@ -413,7 +492,7 @@ body{
 
 #about{
     padding: 50px 0px;
-    background: #f5f5f5;
+    background: #55828b;
 }
 
 .about-wrapper{
@@ -428,13 +507,13 @@ body{
 }
 
 #about p{
-    font-size: 1.6rem;
-    color: #555;
+    font-size: 2.0rem;
+    color: #3d405b;
 }
 
 #about .small{
-    font-size: 1.6rem;
-    color: #666;
+    font-size: 2.6rem;
+    color: #0d1b2a;
     font-weight: 600;
 }
 
@@ -461,6 +540,34 @@ body{
     object-position: right;
     transform: translate(150%);
     animation: about 1s forwards ease-in-out;
+}
+
+.about-text ul {
+    margin-top: 1rem;
+    padding-left: 1.5rem;
+    list-style-type: none;
+}
+
+.about-text ul li {
+    margin-bottom: 0.75rem;
+    padding-left: 1.5rem;
+    position: relative;
+    font-size: 1.2rem;
+    color: #3d405b;
+}
+
+.about-text ul li::before {
+    content: "✔";
+    position: absolute;
+    left: 0;
+    color: #e67e22;
+    font-weight: bold;
+}
+
+.about-text h3 {
+    margin-top: 1.5rem;
+    color: #333;
+    font-size: 1.5rem;
 }
 
 @media (max-width: 991px) {
@@ -637,6 +744,7 @@ body{
 }
 
 #food h2 {
+    
     text-align: center;
     font-family: Georgia, 'Times New Roman', Times, serif;
     text-transform: uppercase;
@@ -644,6 +752,7 @@ body{
     font-weight: 600;
     margin-bottom: 3rem;
     color: #333;
+    
 }
 
 /* Category Container Styling */
@@ -845,18 +954,21 @@ body{
 
 /* Keep the heading separate */
 #food-items h2 {
-    display: inline-flex; /* Keep h2 and icon in line */
+    display: inline-flex; /* Keeps text and icon in one line */
     align-items: center;
     justify-content: center;
-    color: white;
-    background: #003049 ;/* Soft pastel color for peace */
-    border: 2px; /* Border to fit h2 size */
-    padding: 10px 20px;
+    color: #03045e;
+    background: linear-gradient(135deg, #00b4d8, #90e0ef); /* Gradient for a cool look */
+    padding: 15px 30px;
     font-weight: 700;
-    margin-bottom: 20px;
-    border-radius: 10px; /* Smooth rounded corners */
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    font-size: 1.8rem;
+    font-size: 2rem;
+    margin-bottom: 30px;
+    border-radius: 12px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2); /* Cool shadow effect */
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: transform 0.3s ease-in-out;
 }
 
 /* Food Items Grid */

@@ -3,16 +3,37 @@
 {% block title %}About Us - Foodies' Paradise{% endblock %}
 
 {% block content %}
-    <section id="about">
-        <div class="about-wrapper container">
-            <div class="about-text">
-                <p class="small">About Us</p>
-                <h2>Here we are to provide you with tasty and healthy recipes</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam modi ad repellendus ullam officiis vel nobis nulla veniam. Dicta iure quo, fugiat quos accusamus velit quas voluptates eaque neque amet!</p>
-            </div>
-            <div class="about-img">
-                <img src="{{ url_for('static', filename='img/main.jpg') }}" alt="About Us">
-            </div>
+<section id="about">
+    <div class="about-wrapper container">
+        <div class="about-text">
+            <p class="small">About Us</p>
+            <h2>Here we are to provide you with tasty and healthy recipes</h2>
+
+            <p>
+                Welcome to <strong>Foodies' Paradise</strong> – your go-to destination for discovering, saving, and enjoying personalized recipes from around the globe.
+            </p>
+
+            <p>
+                Born from a passion for cooking and a love for cultural diversity, our platform brings together a rich collection of dishes across categories like <em>breakfast, lunch, dinner, desserts, soups, and fast food</em>, featuring cuisines such as <em>Indian, Italian, Chinese, Korean, Japanese, and Western</em>.
+            </p>
+
+            <p>
+                Our mission is to make your cooking journey smarter, easier, and more enjoyable. Whether you're a beginner or a seasoned chef, we offer:
+            </p>
+
+            <ul>
+                <li>🔍 <strong>Smart search and filtering</strong> to find dishes quickly</li>
+                <li>❤️ <strong>Wishlist & liked recipes</strong> for easy access to your favorites</li>
+                <li>🤖 <strong>AI-powered chatbot</strong> for personalized suggestions</li>
+                <li>🌟 <strong>Explore More section</strong> that recommends based on your preferences</li>
+            </ul>
+
+            <h3>Join us in exploring new tastes, discovering hidden gems, and bringing global flavors to your kitchen.</h3>
         </div>
-    </section>
+
+        <div class="about-img">
+            <img src="{{ url_for('static', filename='img/main.jpg') }}" alt="About Us">
+        </div>
+    </div>
+</section>
 {% endblock %}
