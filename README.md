@@ -20,19 +20,19 @@ Foodies' Paradise is a dynamic and interactive recipe website built using **HTML
 
 | Homepage | Categories |
 |----------|------------|
-| ![Homepage](screenshots/home.png) | ![Categories](screenshots/categories.png) |
+| ![Homepage](screenshots/home.jpeg) | ![Categories](screenshots/home.jpeg) |
 
 | Cuisines Page | Food Items |
 |---------------|------------|
-| ![Cuisines Page](screenshots/cuisines.png) | ![Food Items](screenshots/food-items.png) |
+| ![Cuisines Page](screenshots/cuisine.jpeg) | ![Food Items](screenshots/food-items.jpeg) |
 
 | Recipe Card | Liked List |
 |-------------|------------|
-| ![Recipe Card](screenshots/recipe.png) | ![Liked List](screenshots/liked-items.png) |
+| ![Recipe Card](screenshots/recipe.jpeg) | ![Liked List](screenshots/liked-items.jpeg) |
 
 | Search Bar |
 |--------|
-| ![Search Bar](screenshots/searchbar.png) |
+| ![Search Bar](screenshots/search.jpeg) |
 
 
 ---
